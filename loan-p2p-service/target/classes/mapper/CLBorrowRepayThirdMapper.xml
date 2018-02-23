@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hwc.framework.modules.dao.CLBorrowRepayThirdMapper" >
+  <resultMap id="BaseResultMap" type="com.hwc.framework.modules.model.CLBorrowRepayThird" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+    <result column="borrow_repay_id" property="borrowRepayId" jdbcType="BIGINT" />
+    <result column="third_repay_no" property="thirdRepayNo" jdbcType="VARCHAR" />
+    <result column="repay_amount" property="repayAmount" jdbcType="DECIMAL" />
+    <result column="interest" property="interest" jdbcType="DECIMAL" />
+    <result column="penalty_amout" property="penaltyAmout" jdbcType="DECIMAL" />
+    <result column="principle_amount" property="principleAmount" jdbcType="DECIMAL" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, order_no, borrow_repay_id, third_repay_no, repay_amount, status, create_time, 
+    update_time, interest, penalty_amout, principle_amount
+  </sql>
+  <select id="findOneByBorrowRepayId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from cl_borrow_repay_third
+    where borrow_repay_id = #{repayId,jdbcType=BIGINT}
+    AND status = 2
+    ORDER BY create_time DESC 
+    limit 1
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from cl_borrow_repay_third
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteRepayThirdByRepayId" parameterType="java.lang.Long" >
+    delete from cl_borrow_repay_third
+    where borrow_repay_id = #{repayId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from cl_borrow_repay_third
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.hwc.framework.modules.model.CLBorrowRepayThird" >
+    insert into cl_borrow_repay_third (id, order_no, borrow_repay_id, 
+      third_repay_no, repay_amount, status, 
+      create_time, update_time, interest, penalty_amout, principle_amount)
+    values (#{id,jdbcType=BIGINT}, #{orderNo,jdbcType=VARCHAR}, #{borrowRepayId,jdbcType=BIGINT}, 
+      #{thirdRepayNo,jdbcType=VARCHAR}, #{repayAmount,jdbcType=DECIMAL}, #{status,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}), #{interest,jdbcType=DECIMAL}
+      , #{penaltyAmout,jdbcType=DECIMAL}, #{principleAmount,jdbcType=DECIMAL}
+  </insert>
+  <insert id="insertSelective" parameterType="com.hwc.framework.modules.model.CLBorrowRepayThird" >
+    insert into cl_borrow_repay_third
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="orderNo != null" >
+        order_no,
+      </if>
+      <if test="borrowRepayId != null" >
+        borrow_repay_id,
+      </if>
+      <if test="thirdRepayNo != null" >
+        third_repay_no,
+      </if>
+      <if test="repayAmount != null" >
+        repay_amount,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="interest != null" >
+        interest,
+      </if>
+      <if test="penaltyAmout != null" >
+        penalty_amout,
+      </if>
+      <if test="principleAmount != null" >
+        principle_amount,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="orderNo != null" >
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="borrowRepayId != null" >
+        #{borrowRepayId,jdbcType=BIGINT},
+      </if>
+      <if test="thirdRepayNo != null" >
+        #{thirdRepayNo,jdbcType=VARCHAR},
+      </if>
+      <if test="repayAmount != null" >
+        #{repayAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="interest != null" >
+        #{interest,jdbcType=DECIMAL},
+      </if>
+      <if test="penaltyAmout != null" >
+        #{penaltyAmout,jdbcType=DECIMAL},
+      </if>
+      <if test="principleAmount != null" >
+        #{principleAmount,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateBorrowRepayThirdInfo" parameterType="com.hwc.framework.modules.model.CLBorrowRepayThird" >
+    update cl_borrow_repay_third
+    <set >
+      <if test="thirdRepayNo != null" >
+        third_repay_no = #{thirdRepayNo,jdbcType=VARCHAR},
+      </if>
+      <if test="repayAmount != null" >
+        repay_amount = #{repayAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where borrow_repay_id = #{borrowRepayId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hwc.framework.modules.model.CLBorrowRepayThird" >
+    update cl_borrow_repay_third
+    <set >
+      <if test="orderNo != null" >
+        order_no = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="borrowRepayId != null" >
+        borrow_repay_id = #{borrowRepayId,jdbcType=BIGINT},
+      </if>
+      <if test="thirdRepayNo != null" >
+        third_repay_no = #{thirdRepayNo,jdbcType=VARCHAR},
+      </if>
+      <if test="repayAmount != null" >
+        repay_amount = #{repayAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="interest != null" >
+        interest = #{interest,jdbcType=DECIMAL},
+      </if>
+      <if test="penaltyAmout != null" >
+        penalty_amout = #{penaltyAmout,jdbcType=DECIMAL},
+      </if>
+      <if test="principleAmount != null" >
+        principle_amount = #{principleAmount,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hwc.framework.modules.model.CLBorrowRepayThird" >
+    update cl_borrow_repay_third
+    set order_no = #{orderNo,jdbcType=VARCHAR},
+      borrow_repay_id = #{borrowRepayId,jdbcType=BIGINT},
+      third_repay_no = #{thirdRepayNo,jdbcType=VARCHAR},
+      repay_amount = #{repayAmount,jdbcType=DECIMAL},
+      status = #{status,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      interest = #{interest,jdbcType=DECIMAL},
+      penalty_amout = #{penaltyAmout,jdbcType=DECIMAL},
+      principle_amount = #{principleAmount,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.hwc</groupId>
+        <artifactId>loan</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>loan-user</artifactId>
+    <packaging>${activatedPackaging}</packaging>
+
+    <name>loan-user</name>
+
+    <dependencies>
+        <!-- springboot -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-eureka</artifactId>
+        </dependency>
+
+        <!-- MySQL -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+        <!--druid-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid-spring-boot-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+        </dependency>
+
+        <!--常用库依赖-->
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>com.hwc.base.boot</groupId>
+            <artifactId>hwc-web-spring-boot-starter</artifactId>
+        </dependency>
+        <!-- swagger2 api -->
+        <dependency>
+            <groupId>com.hwc.base.boot</groupId>
+            <artifactId>hwc-swagger-spring-boot-starter</artifactId>
+        </dependency>
+
+        <!-- redis -->
+        <dependency>
+            <groupId>com.hwc.base.boot</groupId>
+            <artifactId>hwc-redis-spring-boot-starter</artifactId>
+        </dependency>
+
+        <!-- myBatis相关 -->
+        <dependency>
+            <groupId>com.hwc.base.boot</groupId>
+            <artifactId>hwc-mybatis-spring-boot-starter</artifactId>
+        </dependency>
+
+        <!-- aliyun log -->
+        <dependency>
+            <groupId>com.aliyun.openservices</groupId>
+            <artifactId>log-loghub-log4j-appender</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.hwc.common</groupId>
+            <artifactId>hwc-aliyun-ons</artifactId>
+        </dependency>
+        <!-- aliyun OSS -->
+        <dependency>
+            <groupId>com.hwc.common</groupId>
+            <artifactId>hwc-aliyun-oss</artifactId>
+        </dependency>
+
+        <!-- hwc 常用组件库 -->
+        <dependency>
+            <groupId>cn.freesoft</groupId>
+            <artifactId>CommonBaseUtils</artifactId>
+            <exclusions>
+                <exclusion>
+                    <artifactId>slf4j-log4j12</artifactId>
+                    <groupId>org.slf4j</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- org.jsoup -->
+        <dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>1.8.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.erongdu.credit</groupId>
+            <artifactId>apidemo</artifactId>
+            <version>1.0.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.hwc.base</groupId>
+            <artifactId>hwc-base-api</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.hwc</groupId>
+            <artifactId>loan-sdk</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.hwc.common</groupId>
+            <artifactId>hwc-aliyun-ons</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.moxie.sdk</groupId>
+            <artifactId>moxie-sdk</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <type>jar</type>
+        </dependency>
+
+        <dependency>
+            <groupId>com.hwc</groupId>
+            <artifactId>loan-core</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+ 
+
+    </dependencies>
+
+
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <activatedProperties>dev</activatedProperties>
+                <activatedPackaging>jar</activatedPackaging>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <profile>
+            <id>test</id>
+            <properties>
+                <activatedProperties>test</activatedProperties>
+                <activatedPackaging>jar</activatedPackaging>
+            </properties>
+        </profile>
+        <profile>
+            <id>product</id>
+            <properties>
+                <activatedProperties>product</activatedProperties>
+                <activatedPackaging>jar</activatedPackaging>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>product-war</id>
+            <properties>
+                <activatedProperties>product</activatedProperties>
+                <activatedPackaging>war</activatedPackaging>
+            </properties>
+            <dependencies>
+                <dependency>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-tomcat</artifactId>
+                    <scope>provided</scope>
+                </dependency>
+            </dependencies>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-war-plugin</artifactId>
+                        <version>2.6</version>
+                        <configuration>
+                            <failOnMissingWebXml>false</failOnMissingWebXml>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+    </profiles>
+
+    <build>
+        <finalName>${project.artifactId}</finalName>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <includeSystemScope>true</includeSystemScope>
+                    <jvmArguments>
+		               -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005
+		            </jvmArguments>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>build-info</goal>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

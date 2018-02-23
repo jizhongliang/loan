@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- arc_user表:用户管理模块 -->
+<mapper namespace="com.hwc.framework.modules.dao.CloanUserMapper">
+
+	<!--返回用户的基本信息Map -->
+	<resultMap id="BaseInfoModelMap" type="com.hwc.framework.modules.model.CloanUserModel">
+		<result column="login_name" property="loginName" jdbcType="VARCHAR" />
+		<result column="real_name" property="realName" jdbcType="VARCHAR" />
+		<result column="id_no" property="idNo" jdbcType="VARCHAR" />
+		<result column="id_addr" property="idAddr" jdbcType="VARCHAR" />
+		<result column="channel_name" property="channelName" jdbcType="VARCHAR" />
+		<result column="mkt_name" property="mktName" jdbcType="VARCHAR" />
+		<result column="company_name" property="companyName" jdbcType="VARCHAR" />
+		<result column="company_addr" property="companyAddr" jdbcType="VARCHAR" />
+		<result column="sex" property="sex" jdbcType="VARCHAR" />
+		<result column="live_addr" property="liveAddr" jdbcType="VARCHAR" />
+		<result column="live_time" property="liveTime" jdbcType="VARCHAR" />
+		<result column="marry_state" property="marryState" jdbcType="VARCHAR" />
+		<result column="phone" property="phone" jdbcType="VARCHAR" />
+		<result column="phone_server_pwd" property="phoneServerPwd" jdbcType="VARCHAR" />
+		<result column="national" property="national" jdbcType="VARCHAR" />
+		<result column="education" property="education" jdbcType="VARCHAR" />
+		<result column="working_years" property="workingYears" jdbcType="VARCHAR" />
+		<result column="salary" property="salary" jdbcType="VARCHAR" />
+		<result column="regist_time" property="createTime" jdbcType="VARCHAR" />
+		<result column="update_time" property="updateTime" jdbcType="VARCHAR" />
+		<result column="cat" property="cat" jdbcType="VARCHAR" />
+		<result column="register_client" property="registerClient" jdbcType="VARCHAR" />
+		<result column="state" property="state" jdbcType="VARCHAR" />
+	</resultMap>
+
+
+	<!--基本的sql查询字段 公共引用... -->
+	<sql id="Base_Column_List">
+		id,login_name,login_pwd,cat,loginpwd_modify_time,regist_time,register_client,trade_pwd,tradepwd_modify_time,uuid,invitation_code,cat,channel_id,mkt_id,login_time
+	</sql>
+
+	<!--用户的基本信息的sql查询字段 公共引用... -->
+	<sql id="Base_User_Column_List">
+		u.id,u.login_name,u.loginpwd_modify_time,u.regist_time,u.register_client,u.tradepwd_modify_time,u.uuid,u.invitation_code,u.cat,
+		a.phone,a.real_name,a.id_no,a.id_addr,a.company_name,a.company_addr,a.sex,a.live_addr,a.live_time,a.marry_state,a.phone,a.phone_server_pwd,a.national,a.education,a.working_years,a.salary,a.create_time,a.update_time,a.state
+	</sql>
+
+	<!-- 基本用户信息的sql查询条件公共引用 -->
+	<sql id="searchBaseBy">
+		<trim prefix="where" prefixOverrides="and|or">
+			<if test="loginName !='' and loginName !=null">
+				and u.login_name like concat("%",#{loginName,jdbcType=VARCHAR},"%")
+			</if>
+			<if test="registTime !=null">
+				and DATE_FORMAT(u.regist_time,'%Y-%m-%d') =
+				#{registTime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="beginTime != null">
+				and DATE_FORMAT(u.regist_time,'%Y-%m-%d') &gt;=
+				#{startTime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="endTime  != null">
+				and DATE_FORMAT(u.regist_time,'%Y-%m-%d') &lt;=
+				#{endTime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="realName !='' and realName !=null">
+				and a.real_name like concat("%",#{realName,jdbcType=VARCHAR},"%")
+			</if>
+			<if test="idNo !='' and idNo !=null">
+				and a.id_no like concat("%",#{idNo,jdbcType=VARCHAR},"%")
+			</if>
+			<if test="state !='' and state !=null">
+				and a.state =#{state,jdbcType=VARCHAR}
+			</if>
+			<if test="registerClient != null and registerClient != '' ">
+				and register_client = #{registerClient,jdbcType=VARCHAR}
+			</if>
+			<if test="cat != null and cat != ''">
+				and u.cat = #{cat,jdbcType=VARCHAR}
+			</if>
+			<if test="channelId != null and channelId != ''">
+				and channel_id = #{channelId,jdbcType=BIGINT}
+			</if>
+		</trim>
+	</sql>
+	<!--(SELECT c.name FROM cl_channel c where c.id = u.channel_id and c.type=20) as-->
+	<!--channel_name,-->
+	<!--(SELECT m.name FROM cl_channel m where m.code = u.mkt_id   and m.type=10) as-->
+	<!--mkt_name-->
+	<select id="listModelPage" resultMap="BaseInfoModelMap" parameterType="java.util.HashMap">
+		select
+		u.id,u.login_name,u.regist_time,u.register_client,u.channel_id,u.cat,a.real_name,a.id_no,a.company_name,a.education,a.working_years,a.salary,a.state
+		from cl_user u left join cl_user_base_info a on u.id = a.user_id
+		<include refid="searchBaseBy" />
+		order by u.id desc
+	</select>
+
+	<select id="getModelById" resultMap="BaseInfoModelMap" parameterType="java.lang.Long">
+		select
+		<include refid="Base_User_Column_List" />
+		from cl_user u left join cl_user_base_info a on u.id=a.user_id
+		where u.id = #{userId,jdbcType=BIGINT}
+	</select>
+
+</mapper>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwc.framework.modules.dao.ClQuartzInfoMapper">
+  <resultMap id="BaseResultMap" type="com.hwc.framework.modules.model.ClQuartzInfo">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="cycle" jdbcType="VARCHAR" property="cycle" />
+    <result column="class_name" jdbcType="VARCHAR" property="className" />
+    <result column="succeed" jdbcType="INTEGER" property="succeed" />
+    <result column="fail" jdbcType="INTEGER" property="fail" />
+    <result column="state" jdbcType="VARCHAR" property="state" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+</mapper>

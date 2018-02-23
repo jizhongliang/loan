@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwc.framework.modules.dao.ClBorrowRepayMapper">
+    <resultMap id="BaseResultMap" type="com.hwc.framework.modules.model.ClBorrowRepay">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="user_id" jdbcType="BIGINT" property="userId"/>
+        <result column="borrow_id" jdbcType="BIGINT" property="borrowId"/>
+        <result column="real_amount" jdbcType="DECIMAL" property="realAmount"/>
+        <result column="interest" jdbcType="DECIMAL" property="interest"/>
+        <result column="seq" jdbcType="INTEGER" property="seq"/>
+        <result column="rate" jdbcType="DECIMAL" property="rate"/>
+        <result column="amount" jdbcType="DECIMAL" property="amount"/>
+        <result column="real_amount_balance" jdbcType="DECIMAL" property="realAmountBalance"/>
+        <result column="repay_amount" jdbcType="DECIMAL" property="repayAmount"/>
+        <result column="repay_time" jdbcType="TIMESTAMP" property="repayTime"/>
+        <result column="state" jdbcType="VARCHAR" property="state"/>
+        <result column="penalty_amout" jdbcType="DECIMAL" property="penaltyAmout"/>
+        <result column="penalty_day" jdbcType="INTEGER" property="penaltyDay"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+    </resultMap>
+
+    <resultMap id="repayResultMap" type="com.hwc.framework.modules.domain.BorrowRepayBean">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="user_id" jdbcType="BIGINT" property="userId"/>
+        <result column="borrow_id" jdbcType="BIGINT" property="borrowId"/>
+        <result column="real_amount" jdbcType="DECIMAL" property="realAmount"/>
+        <result column="interest" jdbcType="DECIMAL" property="interest"/>
+        <result column="seq" jdbcType="INTEGER" property="seq"/>
+        <result column="rate" jdbcType="DECIMAL" property="rate"/>
+        <result column="amount" jdbcType="DECIMAL" property="amount"/>
+        <result column="real_amount_balance" jdbcType="DECIMAL" property="realAmountBalance"/>
+        <result column="repay_amount" jdbcType="DECIMAL" property="repayAmount"/>
+        <result column="repay_time" jdbcType="TIMESTAMP" property="repayDate"/>
+        <result column="state" jdbcType="VARCHAR" property="state"/>
+        <result column="penalty_amout" jdbcType="DECIMAL" property="penaltyAmout"/>
+        <result column="penalty_day" jdbcType="INTEGER" property="penaltyDay"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="mobile" jdbcType="VARCHAR" property="mobile"/>
+        <result column="order_no" jdbcType="VARCHAR" property="orderNo"/>
+
+    </resultMap>
+    <select id="getLatelyRepayPlan" parameterType="java.lang.Long" resultMap="BaseResultMap">
+      select * From cl_borrow_repay where borrow_id=#{borrowId,jdbcType=BIGINT} and state='20' order by repay_time asc limit 1
+  </select>
+    <select id="getList" parameterType="java.lang.Long" resultMap="BaseResultMap">
+      select * From cl_borrow_repay where borrow_id=#{borrow_id,jdbcType=BIGINT} and state='20' order by repay_time desc 
+  </select>
+    <select id="getLatelyHasRepayPlan" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select * From cl_borrow_repay where borrow_id=#{borrowId,jdbcType=BIGINT} and state='10' order by repay_time desc limit 1
+  </select>
+    <select id="getMaxUnRepayPlan" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select * From cl_borrow_repay where borrow_id=#{borrowId,jdbcType=BIGINT}   order by seq desc limit 1
+  </select>
+    <sql id="searchModelBy">
+        <if test="name !='' and name !=null">
+            and c.name like concat("%",#{name,jdbcType=VARCHAR},"%")
+        </if>
+        <if test="orderNo !='' and orderNo !=null">
+            and c.order_no = #{orderNo,jdbcType=VARCHAR}
+        </if>
+        <if test="mobile !='' and mobile !=null">
+            and c.mobile = #{mobile,jdbcType=VARCHAR}
+        </if>
+        <if test="state != null and state != '' ">
+            and r.state = #{state,jdbcType=VARCHAR}
+        </if>
+        <if test="start != null">
+            and r.repay_time &gt;= #{start,jdbcType=TIMESTAMP}
+        </if>
+        <if test="end  != null">
+            and r.repay_time &lt; #{end,jdbcType=TIMESTAMP}
+        </if>
+        <if test="borrow_type != null and borrow_type !=''">
+            and c.borrow_type = #{borrow_type,jdbcType=VARCHAR}
+        </if>
+    </sql>
+    <select id="countOverdue" parameterType="java.util.HashMap"  resultType="java.lang.Integer">
+        SELECT count(id) FROM cl_borrow_repay WHERE state = 20 and repay_time  &lt;   #{date,jdbcType=TIMESTAMP}
+        and borrow_id = #{borrowId,jdbcType=BIGINT}
+    </select>
+    <select id="getRepayList" parameterType="java.util.HashMap" resultMap="repayResultMap">
+        select c.name,c.mobile,c.order_no,r.* From cl_borrow c ,cl_borrow_repay r where c.id=r.borrow_id AND
+        r.state!='40'
+        <include refid="searchModelBy"/>
+        order by r.repay_time
+    </select>
+    <select id="getUnRepayList" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+        select min(r.id)id,r.borrow_id From cl_borrow_repay r where r.state='20'
+        <include refid="searchModelBy"/>
+        group by r.borrow_id
+    </select>
+    <select id="clacUnRepayAmount" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select user_id,borrow_id, SUM(real_amount) real_amount,SUM(interest) interest,SUM(penalty_amout) penalty_amout,SUM(penalty_day) penalty_day from cl_borrow_repay where borrow_id=#{borrowId,jdbcType=BIGINT}  and state='20'
+    GROUP by borrow_id
+    </select>
+
+    <select id="clacRepayAmount" parameterType="java.lang.Long" resultType="java.math.BigDecimal">
+        select SUM(repay_amount) from cl_borrow_repay where borrow_id=#{borrowId,jdbcType=BIGINT}  and state='10'
+        GROUP by borrow_id
+    </select>
+
+
+</mapper>

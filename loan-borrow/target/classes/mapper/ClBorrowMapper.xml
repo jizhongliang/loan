@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwc.framework.modules.dao.ClBorrowMapper">
+    <resultMap id="BaseResultMap" type="com.hwc.framework.modules.model.ClBorrow">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="user_id" jdbcType="BIGINT" property="userId"/>
+        <result column="order_no" jdbcType="VARCHAR" property="orderNo"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="mobile" jdbcType="VARCHAR" property="mobile"/>
+        <result column="borrow_type" jdbcType="VARCHAR" property="borrowType"/>
+        <result column="mid" jdbcType="BIGINT" property="mid"/>
+        <result column="amount" jdbcType="DECIMAL" property="amount"/>
+        <result column="real_amount" jdbcType="DECIMAL" property="realAmount"/>
+        <result column="fee" jdbcType="DECIMAL" property="fee"/>
+        <result column="periods" jdbcType="INTEGER" property="periods"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="time_limit" jdbcType="VARCHAR" property="timeLimit"/>
+        <result column="state" jdbcType="VARCHAR" property="state"/>
+        <result column="expire_time" jdbcType="TIMESTAMP" property="expireTime"/>
+        <result column="isnotify" jdbcType="CHAR" property="isnotify"/>
+        <result column="card_id" jdbcType="BIGINT" property="cardId"/>
+        <result column="service_fee" jdbcType="DECIMAL" property="serviceFee"/>
+        <result column="flow_fee" jdbcType="DECIMAL" property="flowFee"/>
+        <result column="info_auth_fee" jdbcType="DECIMAL" property="infoAuthFee"/>
+        <result column="interest" jdbcType="DECIMAL" property="interest"/>
+        <result column="rate" jdbcType="DECIMAL" property="rate"/>
+        <result column="client" jdbcType="VARCHAR" property="client"/>
+        <result column="address" jdbcType="VARCHAR" property="address"/>
+        <result column="coordinate" jdbcType="VARCHAR" property="coordinate"/>
+        <result column="remark" jdbcType="VARCHAR" property="remark"/>
+        <result column="scenes" jdbcType="VARCHAR" property="scenes"/>
+        <result column="loan_time" jdbcType="TIMESTAMP" property="loanTime"/>
+        <result column="ip" jdbcType="VARCHAR" property="ip"/>
+        <result column="contract_id" jdbcType="DECIMAL" property="contractId"/>
+    </resultMap>
+	
+	<sql id="Base_Column_List">
+	 id,user_id,order_no,amount,real_amount,fee,create_time,time_limit,state,card_id,service_fee,info_auth_fee,flow_fee,interest,client,address,coordinate,remark,scenes
+	</sql>
+	
+	
+    <select id="findCreditByUserIdAndState" resultMap="BaseResultMap"
+            parameterType="java.util.HashMap">
+        select
+        id,user_id,order_no,amount,real_amount,fee,create_time,time_limit,state,card_id,service_fee,info_auth_fee,flow_fee,interest,client,address,coordinate,remark,scenes
+        from cl_borrow WHERE borrow_type='X' AND state IN ('16','21','22','26','27','30','40')
+        and user_id = #{userId,jdbcType=BIGINT}
+        order by id desc limit 1
+    </select>
+    
+     <select id="findByUserId" resultMap="BaseResultMap">
+        select
+        <include refid = "Base_Column_List"></include>
+        from cl_borrow  where user_id =  #{userId,jdbcType=BIGINT}
+        order by id desc limit 1
+    </select>
+     <select id="getByUserId" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        select
+        <include refid = "Base_Column_List"></include>
+        from cl_borrow  where user_id =  #{userId,jdbcType=BIGINT} and state=#{state,jdbcType=VARCHAR} and borrow_type=#{borrowType,jdbcType=VARCHAR} order by create_time DESC
+    </select>
+     <select id="getByUserIds" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        select
+        <include refid = "Base_Column_List"></include>
+        from cl_borrow  where user_id =  #{userId,jdbcType=BIGINT} and borrow_type=#{borrowType,jdbcType=VARCHAR} and state in(30,40,41) order by create_time DESC
+    </select>
+     <update id="updates" parameterType="java.util.HashMap">
+    update cl_borrow set
+    state =#{state,jdbcType=VARCHAR}
+    where id = #{borrowId ,jdbcType=BIGINT} 
+  </update>
+    <select id="getSuccessBorrowCountByUid" resultType="int" parameterType="java.util.HashMap" >
+        SELECT count(*)
+        FROM cl_borrow
+        WHERE user_id = #{userId,jdbcType=BIGINT}
+        AND state IN ('30','40')
+    </select>
+</mapper>

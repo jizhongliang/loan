@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwc.framework.modules.dao.ClPayLogMapper">
+    <resultMap id="BaseResultMap" type="com.hwc.framework.modules.model.ClPayLog">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="order_no" jdbcType="VARCHAR" property="orderNo"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="mobile" jdbcType="VARCHAR" property="mobile"/>
+        <result column="user_id" jdbcType="BIGINT" property="userId"/>
+        <result column="borrow_id" jdbcType="BIGINT" property="borrowId"/>
+        <result column="repay_id" jdbcType="BIGINT" property="repayId"/>
+        <result column="amount" jdbcType="DECIMAL" property="amount"/>
+        <result column="card_no" jdbcType="VARCHAR" property="cardNo"/>
+        <result column="bank" jdbcType="VARCHAR" property="bank"/>
+        <result column="confirm_code" jdbcType="VARCHAR" property="confirmCode"/>
+        <result column="serial_number" jdbcType="VARCHAR" property="serialNumber"/>
+        <result column="source" jdbcType="VARCHAR" property="source"/>
+        <result column="type" jdbcType="VARCHAR" property="type"/>
+        <result column="scenes" jdbcType="VARCHAR" property="scenes"/>
+        <result column="state" jdbcType="VARCHAR" property="state"/>
+        <result column="remark" jdbcType="VARCHAR" property="remark"/>
+        <result column="pay_req_time" jdbcType="TIMESTAMP" property="payReqTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+    </resultMap>
+    <sql id="base">
+    	id,order_no,name,mobile,user_id,borrow_id,repay_id,amount,card_no,bank,confirm_code
+    	,serial_number,source,type,scenes,state,remark,pay_req_time,update_time,create_time
+    </sql>
+    <sql id="searchModelBy">
+            <if test="name !='' and name !=null">
+                and b.name like concat("%",#{name,jdbcType=VARCHAR},"%")
+            </if>
+            <if test="orderNo !='' and orderNo !=null">
+                and p.order_no = #{orderNo,jdbcType=VARCHAR}
+            </if>
+            <if test="mobile !='' and mobile !=null">
+                and b.mobile = #{mobile,jdbcType=VARCHAR}
+            </if>
+            <if test="state != null and state != '' ">
+                and p.state = #{state,jdbcType=VARCHAR}
+            </if>
+            <if test="scenes != null and scenes != '' ">
+                and p.scenes = #{scenes,jdbcType=VARCHAR}
+            </if>
+            <if test="start != null">
+                and p.pay_req_time &gt;= #{start,jdbcType=TIMESTAMP}
+            </if>
+            <if test="end  != null">
+                and p.pay_req_time &lt; #{end,jdbcType=TIMESTAMP}
+            </if>
+    </sql>
+    <select id="paylogList" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+        select p.* From cl_pay_log p,cl_borrow b where b.id=p.borrow_id AND b.borrow_type=#{borrowType,jdbcType=VARCHAR}
+        <include refid="searchModelBy"/>
+        ORDER BY p.pay_req_time DESC
+    </select>
+   <select id="getBydesc" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select p.* from cl_pay_log p where p.borrow_id=#{borrowId,jdbcType=BIGINT} and p.type=10 and p.scenes=10 order by p.create_time DESC LIMIT 1
+    </select>
+    
+    <select id="selectByParam" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+    	select <include refid="base" /> from cl_pay_log where user_id = #{userId,jdbcType=BIGINT} order by create_time desc limit 1
+    </select>
+   <select id="getList" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select * from cl_pay_log  where borrow_id=#{borrowId,jdbcType=BIGINT} and type=20 and scenes=20 and state=40
+    </select> 
+    
+    
+    
+     <select id="getLastRepayLog" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select * from cl_pay_log  where borrow_id=#{borrowId,jdbcType=BIGINT} and type=20 and scenes=20  order by create_time desc limit 1
+    </select> 
+    
+</mapper>

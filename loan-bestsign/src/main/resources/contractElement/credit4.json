@@ -1,0 +1,67 @@
+[
+   {
+      "pageNum": "1",
+      "x": "0.630",
+      "y": "0.125",
+      "type": "text",
+      "value": "${num}",
+      "fontSize": "10"
+   },
+   {
+      "pageNum": "1",
+      "x": "0.216",
+      "y": "0.148",
+      "type": "text",
+      "value": "${realName}",
+      "fontSize": "10"
+   },
+   {
+      "pageNum": "1",
+      "x": "0.505",
+      "y": "0.203",
+      "type": "text",
+      "value": "宝付",
+      "fontSize": "10"
+   },
+   {
+      "pageNum": "1",
+      "x": "0.250",
+      "y": "0.780",
+      "type": "image",
+      "value": "${loan3_iamge}",
+      "fontSize": "10"
+   },
+   {
+      "pageNum": "1",
+      "x": "0.300",
+      "y": "0.343",
+      "type": "text",
+      "value": "${bank}",
+      "fontSize": "10"
+   },
+   {
+      "pageNum": "1",
+      "x": "0.300",
+      "y": "0.370",
+      "type": "text",
+      "value": "${card_holder}",
+      "fontSize": "10"
+   },
+   {
+      "pageNum": "1",
+      "x": "0.300",
+      "y": "0.397",
+      "type": "text",
+      "value": "${card_no}",
+      "fontSize": "10"
+   },
+   {
+      "pageNum": "1",
+      "x": "0.60",
+      "y": "0.87",
+      "type": "text",
+      "value": "${loan3_date}",
+      "fontSize": "10"
+   }
+
+]

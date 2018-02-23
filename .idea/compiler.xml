@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <resourceExtensions />
+    <wildcardResourcePatterns>
+      <entry name="!?*.java" />
+      <entry name="!?*.form" />
+      <entry name="!?*.class" />
+      <entry name="!?*.groovy" />
+      <entry name="!?*.scala" />
+      <entry name="!?*.flex" />
+      <entry name="!?*.kt" />
+      <entry name="!?*.clj" />
+      <entry name="!?*.aj" />
+    </wildcardResourcePatterns>
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="false">
+        <processorPath useClasspath="true" />
+      </profile>
+      <profile default="false" name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="loan-admin" />
+        <module name="loan-bestsign" />
+        <module name="loan-borrow" />
+        <module name="loan-cloud-admin" />
+        <module name="loan-cloud-eureka" />
+        <module name="loan-cloud-gateway" />
+        <module name="loan-core" />
+        <module name="loan-notity" />
+        <module name="loan-p2p" />
+        <module name="loan-pay" />
+        <module name="loan-pay-baofu" />
+        <module name="loan-pay-log" />
+        <module name="loan-sdk" />
+        <module name="loan-user" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="loan" target="1.8" />
+      <module name="loan-admin" target="1.8" />
+      <module name="loan-bestsign" target="1.8" />
+      <module name="loan-borrow" target="1.8" />
+      <module name="loan-cloud-admin" target="1.8" />
+      <module name="loan-cloud-eureka" target="1.8" />
+      <module name="loan-cloud-gateway" target="1.8" />
+      <module name="loan-core" target="1.8" />
+      <module name="loan-notity" target="1.8" />
+      <module name="loan-p2p" target="1.8" />
+      <module name="loan-pay" target="1.8" />
+      <module name="loan-pay-baofu" target="1.8" />
+      <module name="loan-pay-log" target="1.8" />
+      <module name="loan-sdk" target="1.8" />
+      <module name="loan-user" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

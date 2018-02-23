@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.hwc</groupId>
+        <artifactId>loan</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>loan-pay-log</artifactId>
+    <packaging>jar</packaging>
+
+    <name>loan-pay-log</name>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.version>1.8</java.version>
+        <spring.boot.version>1.5.4.RELEASE</spring.boot.version>
+        <swagger2.version>2.7.0</swagger2.version>
+        <loan.version>1.0.0-SNAPSHOT</loan.version>
+    </properties>
+
+    <dependencies>
+        <!-- springboot -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+            <version>2.3.23</version>
+        </dependency>
+
+        <!--常用库依赖-->
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.5</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.5</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>22.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.22</version>
+        </dependency>
+        <dependency>
+            <groupId>net.dongliu</groupId>
+            <artifactId>requests</artifactId>
+            <version>4.10.0</version>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>0.7.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.16.14</version>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- myBatis相关 -->
+        <dependency>
+            <groupId>com.hwc.base.boot</groupId>
+            <artifactId>hwc-mybatis-spring-boot-starter</artifactId>
+        </dependency>
+
+        <!-- aliyun OSS -->
+        <dependency>
+            <groupId>com.hwc.common</groupId>
+            <artifactId>hwc-aliyun-oss</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <!-- aliyun ons -->
+        <dependency>
+            <groupId>com.hwc.common</groupId>
+            <artifactId>hwc-aliyun-ons</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <!-- hwc 常用组件库 -->
+        <dependency>
+            <groupId>cn.freesoft</groupId>
+            <artifactId>CommonBaseUtils</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.hwc</groupId>
+            <artifactId>loan-core</artifactId>
+            <version>${loan.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.hwc.base</groupId>
+            <artifactId>hwc-base-api</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.hwc.common</groupId>
+            <artifactId>hwc-aliyun-ons</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>cn.freesoft</groupId>
+            <artifactId>CommonBaseUtils</artifactId>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <finalName>${project.artifactId}</finalName>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+    </build>
+
+
+</project>

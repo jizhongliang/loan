@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="GBK" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- cl_quartz_log表:定时任务记录模块 -->
+<mapper namespace="com.hwc.framework.modules.dao.ClQuartzLogMapper">
+    <!--返回Map-->        
+    <resultMap id="BaseResultMap" type="com.hwc.framework.modules.model.ClQuartzLog">
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="quartz_id" property="quartzId" jdbcType="INTEGER" />
+        <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+        <result column="time" property="time" jdbcType="INTEGER" />
+        <result column="result" property="result" jdbcType="VARCHAR" />
+        <result column="remark" property="remark" jdbcType="VARCHAR" />
+    </resultMap>
+    
+    <!--基本的sql查询字段 公共引用...-->
+    <sql id="Base_Column_List">
+        id,quartz_id,start_time,time,result,remark
+    </sql>
+    
+    <!-- 基本的sql查询条件公共引用 -->
+    <sql id="searchBy">
+        <trim prefix="where" prefixOverrides="and|or">
+            <if test=" id !=null and id !=''">
+                id  = #{id,jdbcType=INTEGER}
+            </if>
+            <if test="quartzId !=null and quartzId !=''">
+                and quartz_id = #{quartzId,jdbcType=INTEGER}
+            </if>
+            <if test="startTime !=null">
+                and start_time = #{startTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="time !=null and time !=''">
+                and time = #{time,jdbcType=INTEGER}
+            </if>
+            <if test="result !=null and result !=''">
+                and result = #{result,jdbcType=VARCHAR}
+            </if>
+            <if test="remark !=null and remark !=''">
+                and remark = #{remark,jdbcType=VARCHAR}
+            </if>
+        </trim>
+    </sql>
+    
+    
+    <insert id="save" parameterType="com.hwc.framework.modules.model.ClQuartzLog">
+        insert into cl_quartz_log(quartz_id,start_time,time,result,remark)values(#{quartzId,jdbcType=INTEGER},#{startTime,jdbcType=TIMESTAMP},#{time,jdbcType=INTEGER},#{result,jdbcType=VARCHAR},#{remark,jdbcType=VARCHAR})
+    </insert>
+
+    
+    <update id="updateSelective"  parameterType="java.util.HashMap">
+        update cl_quartz_log
+          <set>
+            <if test="quartzId != null and quartzId != '' ">        
+                quartz_id = #{quartzId,jdbcType=INTEGER},                
+            </if>
+            <if test="startTime !=null">
+                start_time = #{startTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="time != null and time != '' ">        
+                time = #{time,jdbcType=INTEGER},                
+            </if>
+            <if test="result != null and result != '' ">        
+                result = #{result,jdbcType=VARCHAR}                
+            </if>
+            <if test="remark !=null and remark !=''">
+                and remark = #{remark,jdbcType=VARCHAR}
+            </if>
+        </set>    
+        where id = #{id ,jdbcType=INTEGER}
+    </update>
+
+
+    <select id="findByPrimary" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List" />
+        from cl_quartz_log
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+	<select id="findSelective" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        select
+        <include refid="Base_Column_List" />
+        from cl_quartz_log
+        <include refid="searchBy"/>
+    </select>
+               
+    <select id="listSelective" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        select
+        <include refid="Base_Column_List" />
+        from cl_quartz_log
+        <include refid="searchBy"/>
+    </select>
+    
+    <select id="findLastTimeByQzInfoId" resultType="java.lang.String" parameterType="java.lang.Long">
+    	select max(start_time) from cl_quartz_log where quartz_id = #{quartzId,jdbcType=BIGINT}
+    </select>
+    
+    <select id="page" resultType="com.hwc.framework.modules.model.QuartzLogModel" parameterType="java.util.HashMap">
+        SELECT id,start_time startTime,time,result,remark,(SELECT name FROM cl_quartz_info WHERE id=cql.quartz_id)AS name
+		FROM `cl_quartz_log` AS cql
+		<include refid="searchBy"/>
+		ORDER BY id DESC
+    </select>
+    
+</mapper>

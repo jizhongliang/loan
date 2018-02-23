@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwc.framework.modules.dao.ClUserMapper">
+  <resultMap id="BaseResultMap" type="com.hwc.framework.modules.model.ClUser">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="uuid" jdbcType="VARCHAR" property="uuid" />
+    <result column="cat" jdbcType="VARCHAR" property="cat" />
+    <result column="login_name" jdbcType="VARCHAR" property="loginName" />
+    <result column="login_pwd" jdbcType="VARCHAR" property="loginPwd" />
+    <result column="loginpwd_modify_time" jdbcType="TIMESTAMP" property="loginpwdModifyTime" />
+    <result column="regist_time" jdbcType="TIMESTAMP" property="registTime" />
+    <result column="register_client" jdbcType="VARCHAR" property="registerClient" />
+    <result column="trade_pwd" jdbcType="VARCHAR" property="tradePwd" />
+    <result column="tradepwd_modify_time" jdbcType="TIMESTAMP" property="tradepwdModifyTime" />
+    <result column="invitation_code" jdbcType="VARCHAR" property="invitationCode" />
+    <result column="channel_id" jdbcType="BIGINT" property="channelId" />
+    <result column="mkt_id" jdbcType="VARCHAR" property="mktId" />
+    <result column="login_time" jdbcType="TIMESTAMP" property="loginTime" />
+    <result column="is_login" property="isLogin" jdbcType="VARCHAR" />
+  </resultMap>
+   <update id="updateIsLogin" parameterType="java.util.HashMap">
+    update cl_user set
+    is_login =#{isLogin,jdbcType=VARCHAR}
+    where id = #{userId,jdbcType=BIGINT} 
+  </update>
+</mapper>

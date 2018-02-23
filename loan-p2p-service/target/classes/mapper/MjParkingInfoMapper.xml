@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwc.framework.modules.dao.MjParkingInfoMapper">
+  <resultMap id="BaseResultMap" type="com.hwc.framework.modules.domain.MjParkingInfo">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="userId" jdbcType="BIGINT" property="userId" />
+     <result column="village_name" jdbcType="VARCHAR" property="villageName" />
+    <result column="parking_position" jdbcType="VARCHAR" property="parkingPosition" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="demand_label" jdbcType="VARCHAR" property="demandLabel" />
+    <result column="img_url1" jdbcType="VARCHAR" property="imgUrl1" />
+    <result column="img_url2" jdbcType="VARCHAR" property="imgUrl2" />
+    <result column="img_url3" jdbcType="VARCHAR" property="imgUrl3" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="isDemand" jdbcType="VARCHAR" property="isDemand" />
+    <result column="demand_isHot" jdbcType="VARCHAR" property="demandIsHot" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, userId, parking_position, price, phone, name, demand_label, img_url1, img_url2, img_url3, isDemand, 
+    demand_isHot, create_time, remark, village_name
+  </sql>
+  <!-- 基本的sql查询条件公共引用 -->
+	<sql id="searchBy">
+		<trim prefix="where" prefixOverrides="and|or">
+			<if test="id !='' and id !=null">
+				id = #{id,jdbcType=BIGINT}
+			</if>
+			<if test="userId !='' and userId !=null">
+				and userId = #{userId,jdbcType=BIGINT}
+			</if>
+			<if test="parkingPosition !='' and parkingPosition !=null">
+				and parking_position = #{parkingPosition,jdbcType=VARCHAR}
+			</if>
+			<if test="price !='' and price !=null">
+				and price = #{price,jdbcType=DECIMAL}
+			</if>
+			<if test="phone !='' and phone !=null">
+				and phone = #{phone,jdbcType=VARCHAR}
+			</if>
+			<if test="name !='' and name !=null">
+				and name = #{name,jdbcType=VARCHAR}
+			</if>
+			<if test="demandLabel !='' and demandLabel !=null">
+				and demand_label = #{demandLabel,jdbcType=VARCHAR}
+			</if>
+			<if test="imgUrl !='' and imgUrl !=null">
+				and img_url1 = #{imgUrl,jdbcType=VARCHAR}
+			</if>
+			<if test="isDemand !='' and isDemand !=null">
+				and isDemand = #{isDemand,jdbcType=VARCHAR}
+			</if>
+			<if test="demandIsHot !='' and demandIsHot !=null">
+				and demand_isHot = #{demandIsHot,jdbcType=VARCHAR}
+			</if>
+			<if test="createTime !='' and createTime !=null">
+				and create_time = #{createTime,jdbcType=TIMESTAMP}
+			</if>
+		</trim>
+	</sql>
+  
+  
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from mj_parking_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+   <select id="findInfos" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from mj_parking_info
+    <include refid="searchBy" />
+  </select>
+  
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from mj_parking_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.hwc.framework.modules.domain.MjParkingInfo">
+    insert into mj_parking_info (id, userId, parking_position, 
+      price, phone, name, 
+      demand_label, img_url1, img_url2, img_url3, isDemand, 
+      demand_isHot, create_time, remark, village_name)
+    values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{parkingPosition,jdbcType=VARCHAR}, 
+      #{price,jdbcType=DECIMAL}, #{phone,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{demandLabel,jdbcType=VARCHAR}, #{imgUrl1,jdbcType=VARCHAR}, #{imgUrl2,jdbcType=VARCHAR}, #{imgUrl3,jdbcType=VARCHAR}, #{isDemand,jdbcType=VARCHAR}, 
+      #{demandIsHot,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}, #{villageName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hwc.framework.modules.domain.MjParkingInfo">
+    insert into mj_parking_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userId != null">
+        userId,
+      </if>
+      <if test="parkingPosition != null">
+        parking_position,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="demandLabel != null">
+        demand_label,
+      </if>
+      <if test="imgUrl1 != null">
+        img_url1,
+      </if>
+      <if test="imgUrl2 != null">
+        img_url2,
+      </if>
+      <if test="imgUrl3 != null">
+        img_url3,
+      </if>
+      <if test="isDemand != null">
+        isDemand,
+      </if>
+      <if test="demandIsHot != null">
+        demand_isHot,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+       <if test="remark != null">
+        remark,
+      </if>
+       <if test="villageName != null">
+        village_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="parkingPosition != null">
+        #{parkingPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="demandLabel != null">
+        #{demandLabel,jdbcType=VARCHAR},
+      </if>
+      <if test="imgUrl1 != null">
+        #{imgUrl1,jdbcType=VARCHAR},
+      </if>
+      <if test="imgUrl2 != null">
+        #{imgUrl2,jdbcType=VARCHAR},
+      </if>
+      <if test="imgUrl3 != null">
+        #{imgUrl3,jdbcType=VARCHAR},
+      </if>
+      <if test="isDemand != null">
+        #{isDemand,jdbcType=VARCHAR},
+      </if>
+      <if test="demandIsHot != null">
+        #{demandIsHot,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="villageName != null">
+        #{villageName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hwc.framework.modules.domain.MjParkingInfo">
+    update mj_parking_info
+    <set>
+      <if test="userId != null">
+        userId = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="parkingPosition != null">
+        parking_position = #{parkingPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="demandLabel != null">
+        demand_label = #{demandLabel,jdbcType=VARCHAR},
+      </if>
+      <if test="imgUrl1 != null">
+        img_url1 = #{imgUrl1,jdbcType=VARCHAR},
+      </if>
+       <if test="imgUrl2 != null">
+        img_url2 = #{imgUrl2,jdbcType=VARCHAR},
+      </if>
+       <if test="imgUrl3 != null">
+        img_url3 = #{imgUrl3,jdbcType=VARCHAR},
+      </if>
+      <if test="isDemand != null">
+        isDemand = #{isDemand,jdbcType=VARCHAR},
+      </if>
+      <if test="demandIsHot != null">
+        demand_isHot = #{demandIsHot,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="villageName != null">
+        village_name = #{villageName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hwc.framework.modules.domain.MjParkingInfo">
+    update mj_parking_info
+    set userId = #{userId,jdbcType=BIGINT},
+      parking_position = #{parkingPosition,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DECIMAL},
+      phone = #{phone,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      demand_label = #{demandLabel,jdbcType=VARCHAR},
+      img_url1 = #{imgUrl1,jdbcType=VARCHAR},
+      img_url2 = #{imgUrl2,jdbcType=VARCHAR},
+      img_url3 = #{imgUrl3,jdbcType=VARCHAR},
+      isDemand = #{isDemand,jdbcType=VARCHAR},
+      demand_isHot = #{demandIsHot,jdbcType=VARCHAR},
+      village_name = #{villageName,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}    
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

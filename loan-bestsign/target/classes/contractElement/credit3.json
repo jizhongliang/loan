@@ -1,0 +1,108 @@
+[
+   {
+      "pageNum": "1",
+      "x": "0.656",
+      "y": "0.123",
+      "type": "text",
+      "value": "${num}",
+      "fontSize": "10"
+   },
+   {
+      "pageNum": "1",
+      "x": "0.3",
+      "y": "0.1745",
+      "type": "text",
+      "value": "${realName}",
+      "fontSize": "10"
+   },
+   {
+      "pageNum": "1",
+      "x": "0.284",
+      "y": "0.211",
+      "type": "text",
+      "value": "${idNo}",
+      "fontSize": "10"
+   },
+   {
+      "pageNum": "1",
+      "x": "0.24",
+      "y": "0.243",
+      "type": "text",
+      "value": "${address}",
+      "fontSize": "10"
+   },
+   {
+      "pageNum": "1",
+      "x": "0.205",
+      "y": "0.28",
+      "type": "text",
+      "value": "${phone}",
+      "fontSize": "10"
+   },
+   {
+      "pageNum": "1",
+      "x": "0.45",
+      "y": "0.48",
+      "type": "text",
+      "value": "${num_2}",
+      "fontSize": "10"
+   },
+   {
+      "pageNum": "1",
+      "x": "0.455",
+      "y": "0.63",
+      "type": "text",
+      "value": "${address}",
+      "fontSize": "9"
+   },
+   {
+      "pageNum": "2",
+      "x": "0.67",
+      "y": "0.14",
+      "type": "text",
+      "value": "${quota}",
+      "fontSize": "10"
+   },
+   {
+      "pageNum": "2",
+      "x": "0.16",
+      "y": "0.185",
+      "type": "text",
+      "value": "${quota_descript}",
+      "fontSize": "10"
+   },
+   {
+      "pageNum": "2",
+      "x": "0.27",
+      "y": "0.324",
+      "type": "text",
+      "value": "${realName}",
+      "fontSize": "10"
+   },
+   {
+      "pageNum": "2",
+      "x": "0.27",
+      "y": "0.37",
+      "type": "text",
+      "value": "${card_no}",
+      "fontSize": "10"
+   },
+   {
+      "pageNum": "2",
+      "x": "0.27",
+      "y": "0.415",
+      "type": "text",
+      "value": "${bank}",
+      "fontSize": "10"
+   },
+   {
+      "pageNum": "4",
+      "x": "0.67",
+      "y": "0.267",
+      "type": "text",
+      "value": "${loan3_date}",
+      "fontSize": "12"
+   }
+
+
+]

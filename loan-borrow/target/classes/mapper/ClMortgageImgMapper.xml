@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwc.framework.modules.dao.ClMortgageImgMapper">
+  <resultMap id="BaseResultMap" type="com.hwc.framework.modules.model.ClMortgageImg">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="mid" jdbcType="BIGINT" property="mid" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="img_cat" jdbcType="VARCHAR" property="imgCat" />
+    <result column="img_url" jdbcType="VARCHAR" property="imgUrl" />
+    <result column="seq" jdbcType="INTEGER" property="seq" />
+    <result column="created" jdbcType="TIMESTAMP" property="created" />
+  </resultMap>
+</mapper>

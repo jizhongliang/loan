@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwc.framework.modules.dao.SysUserMapper">
+  <resultMap id="BaseResultMap" type="com.hwc.framework.modules.model.SysUser">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="avatar" jdbcType="VARCHAR" property="avatar" />
+    <result column="account" jdbcType="VARCHAR" property="account" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="salt" jdbcType="VARCHAR" property="salt" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="birthday" jdbcType="TIMESTAMP" property="birthday" />
+    <result column="sex" jdbcType="INTEGER" property="sex" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="roleid" jdbcType="VARCHAR" property="roleid" />
+    <result column="roleName" jdbcType="VARCHAR" property="roleName" />
+    <result column="deptid" jdbcType="INTEGER" property="deptid" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="version" jdbcType="INTEGER" property="version" />
+  </resultMap>
+
+  <select id="listUserPage" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+    select
+    u.id as id,
+    u.avatar as avatar,
+    u.account as account,
+    u.password as password,
+    u.salt as salt,
+    u.name as name,
+    u.birthday as birthday,
+    u.sex as sex,
+    u.email as email,
+    u.phone as phone,
+    u.roleid as roleid,
+    r.name as roleName
+    from sys_user u LEFT join sys_role r on u.roleid = r.id
+    where 1=1
+    <if test="name!=null and name!='' ">
+      and u.name like concat('',#{name}, '%')
+    </if>
+  </select>
+
+  <select id="queryRoleHaveSysUserCount" parameterType="java.util.Map" resultType="int">
+    SELECT
+    count(u.id)
+    FROM
+    sys_user u
+    WHERE
+    u.roleid = #{roleId}
+  </select>
+
+
+</mapper>

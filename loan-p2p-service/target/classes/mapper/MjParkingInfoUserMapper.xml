@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwc.framework.modules.dao.MjParkingInfoUserMapper">
+  <resultMap id="BaseResultMap" type="com.hwc.framework.modules.domain.MjParkingInfoUser">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="userId" jdbcType="BIGINT" property="userid" />
+    <result column="mjParkingInfoId" jdbcType="BIGINT" property="mjparkinginfoid" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
+  </resultMap>
+  <!-- 基本的sql查询条件公共引用 -->
+	<sql id="searchBy">
+		<trim prefix="where" prefixOverrides="and|or">
+			<if test="id !='' and id !=null">
+				id = #{id,jdbcType=BIGINT}
+			</if>
+			<if test="userId !=null and userId !=''">
+				and userId = #{userId,jdbcType=BIGINT}
+			</if>
+			<if test="mjParkingInfoId !='' and mjParkingInfoId !=null">
+				and mjParkingInfoId = #{mjParkingInfoId,jdbcType=BIGINT}
+			</if>
+			<if test="type !='' and type !=null">
+				and type = #{type,jdbcType=VARCHAR}
+			</if>
+		</trim>
+	</sql>
+  
+  <sql id="Base_Column_List">
+    id, userId, mjParkingInfoId, type, createTime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from mj_parking_info_user
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+    <select id="findInfos" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from mj_parking_info_user
+     <include refid="searchBy" />
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from mj_parking_info_user
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.hwc.framework.modules.domain.MjParkingInfoUser">
+    insert into mj_parking_info_user (id, userId, mjParkingInfoId, 
+      type, createTime)
+    values (#{id,jdbcType=BIGINT}, #{userid,jdbcType=BIGINT}, #{mjparkinginfoid,jdbcType=BIGINT}, 
+      #{type,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hwc.framework.modules.domain.MjParkingInfoUser">
+    insert into mj_parking_info_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userid != null">
+        userId,
+      </if>
+      <if test="mjparkinginfoid != null">
+        mjParkingInfoId,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="createtime != null">
+        createTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="mjparkinginfoid != null">
+        #{mjparkinginfoid,jdbcType=BIGINT},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hwc.framework.modules.domain.MjParkingInfoUser">
+    update mj_parking_info_user
+    <set>
+      <if test="userid != null">
+        userId = #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="mjparkinginfoid != null">
+        mjParkingInfoId = #{mjparkinginfoid,jdbcType=BIGINT},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hwc.framework.modules.domain.MjParkingInfoUser">
+    update mj_parking_info_user
+    set userId = #{userid,jdbcType=BIGINT},
+      mjParkingInfoId = #{mjparkinginfoid,jdbcType=BIGINT},
+      type = #{type,jdbcType=VARCHAR},
+      createTime = #{createtime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.gexin.platform:gexin-rp-sdk-http:4.0.1.7">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../../repository/repository/com/gexin/platform/gexin-rp-sdk-http/4.0.1.7/gexin-rp-sdk-http-4.0.1.7.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/../../../repository/repository/com/gexin/platform/gexin-rp-sdk-http/4.0.1.7/gexin-rp-sdk-http-4.0.1.7-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../../../repository/repository/com/gexin/platform/gexin-rp-sdk-http/4.0.1.7/gexin-rp-sdk-http-4.0.1.7-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

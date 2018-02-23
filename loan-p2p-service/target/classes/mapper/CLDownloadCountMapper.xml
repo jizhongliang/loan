@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwc.framework.modules.dao.CLDownloadCountMapper">
+  <resultMap id="BaseResultMap" type="com.hwc.framework.modules.model.CLDownloadCount">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="equipment" jdbcType="VARCHAR" property="equipment" />
+    <result column="state" jdbcType="VARCHAR" property="state" />
+    <result column="ip" jdbcType="VARCHAR" property="ip" />
+    <result column="ip_city" jdbcType="VARCHAR" property="ipCity" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="createtime" jdbcType="VARCHAR" property="createtime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, type, phone, equipment, state, ip, ip_city, url, createtime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from cl_download_count
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from cl_download_count
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hwc.framework.modules.model.CLDownloadCount">
+    insert into cl_download_count (id, type, phone, 
+      equipment, state, ip, 
+      ip_city, url, createtime
+      )
+    values (#{id,jdbcType=INTEGER}, #{type,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{equipment,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, #{ip,jdbcType=VARCHAR}, 
+      #{ipCity,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hwc.framework.modules.model.CLDownloadCount">
+    insert into cl_download_count
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="equipment != null">
+        equipment,
+      </if>
+      <if test="state != null">
+        state,
+      </if>
+      <if test="ip != null">
+        ip,
+      </if>
+      <if test="ipCity != null">
+        ip_city,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="equipment != null">
+        #{equipment,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null">
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="ipCity != null">
+        #{ipCity,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hwc.framework.modules.model.CLDownloadCount">
+    update cl_download_count
+    <set>
+      <if test="type != null">
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="equipment != null">
+        equipment = #{equipment,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        state = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null">
+        ip = #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="ipCity != null">
+        ip_city = #{ipCity,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hwc.framework.modules.model.CLDownloadCount">
+    update cl_download_count
+    set type = #{type,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      equipment = #{equipment,jdbcType=VARCHAR},
+      state = #{state,jdbcType=VARCHAR},
+      ip = #{ip,jdbcType=VARCHAR},
+      ip_city = #{ipCity,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

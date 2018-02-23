@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwc.framework.modules.dao.ClBorrowProgressMapper">
+  <resultMap id="BaseResultMap" type="com.hwc.framework.modules.model.ClBorrowProgress">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="borrow_id" jdbcType="BIGINT" property="borrowId" />
+    <result column="state" jdbcType="VARCHAR" property="state" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="loan_time" jdbcType="TIMESTAMP" property="loanTime" />
+    <result column="repay_time" jdbcType="TIMESTAMP" property="repayTime" />
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+  	id,user_id,borrow_id,state,remark,create_time,loan_time,repay_time
+  </sql>
+  
+  <select id="findByUserId" resultMap="BaseResultMap">
+  	select <include refid="Base_Column_List"></include>
+  	from cl_borrow_progress  where user_id =  #{userId,jdbcType=BIGINT}
+    order by id desc limit 1
+  </select>
+  
+</mapper>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwc.framework.modules.dao.ClMortgageMapper">
+  <resultMap id="BaseResultMap" type="com.hwc.framework.modules.model.ClMortgage">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="descript" jdbcType="VARCHAR" property="descript" />
+    <result column="order_no" jdbcType="VARCHAR" property="orderNo" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="dy_city" jdbcType="VARCHAR" property="dyCity" />
+    <result column="dy_address" jdbcType="VARCHAR" property="dyAddress" />
+    <result column="dy_community" jdbcType="VARCHAR" property="dyCommunity" />
+    <result column="dy_type" jdbcType="VARCHAR" property="dyType" />
+    <result column="dy_area" jdbcType="DECIMAL" property="dyArea" />
+    <result column="dy_buy_year" jdbcType="VARCHAR" property="dyBuyYear" />
+    <result column="dy_buy_price" jdbcType="DECIMAL" property="dyBuyPrice" />
+    <result column="borrow_amount" jdbcType="DECIMAL" property="borrowAmount" />
+    <result column="expire_date" jdbcType="DATE" property="expireDate" />
+    <result column="state" jdbcType="VARCHAR" property="state" />
+    <result column="halt" jdbcType="VARCHAR" property="halt" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="market_value" jdbcType="DECIMAL" property="marketValue" />
+    <result column="apply_date" jdbcType="DATE" property="applyDate" />
+    <result column="applyby" jdbcType="BIGINT" property="applyby" />
+    <result column="real_quota" jdbcType="DECIMAL" property="realQuota" />
+    <result column="real_rate" jdbcType="DECIMAL" property="realRate" />
+    <result column="pass_by" jdbcType="BIGINT" property="passBy" />
+    <result column="updated" jdbcType="TIMESTAMP" property="updated" />
+    <result column="created" jdbcType="TIMESTAMP" property="created" />
+  </resultMap>
+
+  <update id="updateByMobile" parameterType="java.util.HashMap">
+    update cl_mortgage set
+    real_quota = #{realQuota,jdbcType=DECIMAL},
+    real_rate = #{realRate,jdbcType=DECIMAL},
+    updated = sysdate()
+    where mobile = #{mobile ,jdbcType=VARCHAR} and halt = 'F'
+  </update>
+</mapper>

@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.aliyun.openservices:ons-client:1.2.7.Final">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../../repository/repository/com/aliyun/openservices/ons-client/1.2.7.Final/ons-client-1.2.7.Final.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/../../../repository/repository/com/aliyun/openservices/ons-client/1.2.7.Final/ons-client-1.2.7.Final-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../../../repository/repository/com/aliyun/openservices/ons-client/1.2.7.Final/ons-client-1.2.7.Final-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

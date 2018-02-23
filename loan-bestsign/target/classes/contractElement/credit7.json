@@ -1,0 +1,179 @@
+[
+    {
+        "pageNum": "1",
+        "x": "0.66",
+        "y": "0.14",
+        "type": "text",
+        "value": "${num_7}",
+        "fontSize": "10"
+     },
+	{
+        "pageNum": "2",
+        "x": "0.3",
+        "y": "0.205",
+        "type": "text",
+        "value": "${realName}",
+        "fontSize": "10"
+     },   
+	 {
+        "pageNum": "1",
+        "x": "0.32",
+        "y": "0.24",
+        "type": "text",
+        "value": "${year}",
+        "fontSize": "10"
+     },
+	 {
+        "pageNum": "1",
+        "x": "0.45",
+        "y": "0.24",
+        "type": "text",
+        "value": "${month}",
+        "fontSize": "10"
+     },
+   {
+        "pageNum": "1",
+        "x": "0.575",
+        "y": "0.24",
+        "type": "text",
+        "value": "${day}",
+        "fontSize": "10"
+     },
+	 {
+        "pageNum": "1",
+        "x": "0.16",
+        "y": "0.255",
+        "type": "text",
+        "value": "${num_2}",
+        "fontSize": "10"
+     },
+	 {
+        "pageNum": "2",
+        "x": "0.38",
+        "y": "0.343",
+        "type": "text",
+        "value": "${realName}",
+        "fontSize": "10"
+     },
+	 {
+        "pageNum": "2",
+        "x": "0.38",
+        "y": "0.412",
+        "type": "text",
+        "value": "${realName}",
+        "fontSize": "10"
+     },
+	 {
+        "pageNum": "2",
+        "x": "0.57",
+        "y": "0.412",
+        "type": "text",
+        "value": "${realName}",
+        "fontSize": "10"
+     },
+	 {
+        "pageNum": "2",
+        "x": "0.69",
+        "y": "0.58",
+        "type": "text",
+        "value": "${realName}",
+        "fontSize": "10"
+     },
+	 {
+        "pageNum": "1",
+        "x": "0.65",
+        "y": "0.65",
+        "type": "text",
+        "value": "${loan_date}",
+        "fontSize": "10"
+     },
+	 {
+        "pageNum": "2",
+        "x": "0.60",
+        "y": "0.231",
+        "type": "text",
+        "value": "${end_day}",
+        "fontSize": "10"
+     },
+	 {
+        "pageNum": "2",
+        "x": "0.70",
+        "y": "0.231",
+        "type": "text",
+        "value": "${borrow_day}",
+        "fontSize": "10"
+     },
+	 {
+        "pageNum": "2",
+        "x": "0.254",
+        "y": "0.259",
+        "type": "text",
+        "value": "${first_repay_year}",
+        "fontSize": "10"
+     },
+	 {
+        "pageNum": "2",
+        "x": "0.321",
+        "y": "0.259",
+        "type": "text",
+        "value": "${first_repay_month}",
+        "fontSize": "10"
+     },
+	 {
+        "pageNum": "2",
+        "x": "0.383",
+        "y": "0.259",
+        "type": "text",
+        "value": "${first_repay_day}",
+        "fontSize": "10"
+     },
+	 {
+        "pageNum": "2",
+        "x": "0.31",
+        "y": "0.285",
+        "type": "text",
+        "value": "${rate}",
+        "fontSize": "10"
+     },
+	 {
+        "pageNum": "2",
+        "x": "0.37",
+        "y": "0.313",
+        "type": "text",
+        "value": "${scene}",
+        "fontSize": "10"
+     },
+	 {
+        "pageNum": "7",
+        "x": "0.240",
+        "y": "0.285",
+        "type": "text",
+        "value": "${loan_date}",
+        "fontSize": "10"
+     },
+	 {
+        "pageNum": "7",
+        "x": "0.237",
+        "y": "0.370",
+        "type": "text",
+        "value": "${borrow_date}",
+        "fontSize": "10"
+     },
+	 {
+        "pageNum": "7",
+        "x": "0.237",
+        "y": "0.482",
+        "type": "text",
+        "value": "${loan3_date}",
+        "fontSize": "10"
+     },
+	  {
+        "pageNum": "7",
+        "x": "0.327",
+        "y": "0.410",
+        "type": "image",
+        "value": "${loan3_iamge}",
+        "fontSize": "10"
+     },
+	 
+]

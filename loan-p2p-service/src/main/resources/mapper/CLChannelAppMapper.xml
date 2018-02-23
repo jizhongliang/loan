@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwc.framework.modules.dao.CLChannelAppMapper">
+  <resultMap id="BaseResultMap" type="com.hwc.framework.modules.domain.CLChannelApp">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="channel_id" jdbcType="BIGINT" property="channelId" />
+    <result column="app_type" jdbcType="VARCHAR" property="appType" />
+    <result column="latest_version" jdbcType="VARCHAR" property="latestVersion" />
+    <result column="min_version" jdbcType="VARCHAR" property="minVersion" />
+    <result column="download_url" jdbcType="VARCHAR" property="downloadUrl" />
+    <result column="state" jdbcType="VARCHAR" property="state" />
+    <result column="is_force_update" jdbcType="VARCHAR" property="isForceUpdate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, channel_id, app_type, latest_version, min_version, download_url, state, is_force_update
+  </sql>
+<!-- 基本的sql查询条件公共引用 -->
+	<sql id="searchBy">
+		<trim prefix="where" prefixOverrides="and|or">
+			<if test="id !='' and id !=null">
+				id = #{id,jdbcType=BIGINT}
+			</if>
+			<if test="channelId !='' and channelId !=null">
+				and channel_id = #{channelId,jdbcType=BIGINT}
+			</if>
+			<if test="appType !='' and appType !=null">
+				and app_type = #{appType,jdbcType=VARCHAR}
+			</if>
+			<if test="latestVersion !='' and latestVersion !=null">
+				and latest_version = #{latestVersion,jdbcType=VARCHAR}
+			</if>
+			<if test="minVersion !='' and minVersion !=null">
+				and min_version = #{minVersion,jdbcType=VARCHAR}
+			</if>
+			<if test="downloadUrl !='' and downloadUrl !=null">
+				and download_url = #{downloadUrl,jdbcType=VARCHAR}
+			</if>
+			<if test="state !='' and state !=null">
+				and state = #{state,jdbcType=VARCHAR}
+			</if>
+			<if test="isForceUpdate !='' and isForceUpdate !=null">
+				and is_force_update = #{isForceUpdate,jdbcType=VARCHAR}
+			</if>
+		</trim>
+	</sql>
+  <select id="findInfos" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from cl_channel_app
+   <include refid="searchBy" />
+  </select>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from cl_channel_app
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from cl_channel_app
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.hwc.framework.modules.domain.CLChannelApp">
+    insert into cl_channel_app (id, channel_id, app_type, 
+      latest_version, min_version, download_url, 
+      state, is_force_update)
+    values (#{id,jdbcType=BIGINT}, #{channelId,jdbcType=BIGINT}, #{appType,jdbcType=VARCHAR}, 
+      #{latestVersion,jdbcType=VARCHAR}, #{minVersion,jdbcType=VARCHAR}, #{downloadUrl,jdbcType=VARCHAR}, 
+      #{state,jdbcType=VARCHAR}, #{isForceUpdate,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hwc.framework.modules.domain.CLChannelApp">
+    insert into cl_channel_app
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="channelId != null">
+        channel_id,
+      </if>
+      <if test="appType != null">
+        app_type,
+      </if>
+      <if test="latestVersion != null">
+        latest_version,
+      </if>
+      <if test="minVersion != null">
+        min_version,
+      </if>
+      <if test="downloadUrl != null">
+        download_url,
+      </if>
+      <if test="state != null">
+        state,
+      </if>
+      <if test="isForceUpdate != null">
+        is_force_update,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="channelId != null">
+        #{channelId,jdbcType=BIGINT},
+      </if>
+      <if test="appType != null">
+        #{appType,jdbcType=VARCHAR},
+      </if>
+      <if test="latestVersion != null">
+        #{latestVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="minVersion != null">
+        #{minVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="downloadUrl != null">
+        #{downloadUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="isForceUpdate != null">
+        #{isForceUpdate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hwc.framework.modules.domain.CLChannelApp">
+    update cl_channel_app
+    <set>
+      <if test="channelId != null">
+        channel_id = #{channelId,jdbcType=BIGINT},
+      </if>
+      <if test="appType != null">
+        app_type = #{appType,jdbcType=VARCHAR},
+      </if>
+      <if test="latestVersion != null">
+        latest_version = #{latestVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="minVersion != null">
+        min_version = #{minVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="downloadUrl != null">
+        download_url = #{downloadUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        state = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="isForceUpdate != null">
+        is_force_update = #{isForceUpdate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hwc.framework.modules.domain.CLChannelApp">
+    update cl_channel_app
+    set channel_id = #{channelId,jdbcType=BIGINT},
+      app_type = #{appType,jdbcType=VARCHAR},
+      latest_version = #{latestVersion,jdbcType=VARCHAR},
+      min_version = #{minVersion,jdbcType=VARCHAR},
+      download_url = #{downloadUrl,jdbcType=VARCHAR},
+      state = #{state,jdbcType=VARCHAR},
+      is_force_update = #{isForceUpdate,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!--引入默认的一些设置-->
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+    <!--web信息-->
+    <logger name="org.springframework.web" level="info"/>
+
+    <!--写入日志到控制台的appender,用默认的,但是要去掉charset,否则windows下tomcat下乱码-->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <!--定义日志文件的存储地址 勿在 LogBack 的配置中使用相对路径-->
+    <property name="LOG_PATH" value="/opt/logs/loan-user"/>
+    <!--写入日志到文件的appender-->
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    	
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!--日志文件输出的文件名,每天一个文件-->
+            <FileNamePattern>${LOG_PATH}/loan-user.%d{yyyy-MM-dd}.%i.log</FileNamePattern>
+            <maxFileSize>30MB</maxFileSize>
+            <!--日志文件保留天数-->
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
+        </encoder>
+        
+    </appender>
+    
+    
+    <!-- 异常日志 -->
+    <appender name="ERRORFILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    	<file>${LOG_PATH}/loan-user-error.log</file>  
+    	<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+              <level>ERROR</level>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/loan-user-error.%i.log</fileNamePattern>   
+		    <minIndex>1</minIndex>   
+		    <maxIndex>5</maxIndex>   
+        </rollingPolicy>
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">   
+	      <maxFileSize>50MB</maxFileSize>   
+	    </triggeringPolicy>   
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    
+
+    <!--异步到文件-->
+    <appender name="asyncFileAppender" class="ch.qos.logback.classic.AsyncAppender">
+        <discardingThreshold>0</discardingThreshold>
+        <queueSize>500</queueSize>
+        <appender-ref ref="FILE"/>
+    </appender>
+
+    
+    <!--异步到文件-->
+    <appender name="asyncErrorFileAppender" class="ch.qos.logback.classic.AsyncAppender">
+        <discardingThreshold>0</discardingThreshold>
+        <queueSize>500</queueSize>
+        <appender-ref ref="ERRORFILE"/>
+    </appender>
+    
+    <!--生产环境:打印控制台和输出到文件-->
+    <springProfile name="product">
+        <root level="info">
+            <appender-ref ref="CONSOLE"/>
+            <appender-ref ref="asyncFileAppender"/>
+            <appender-ref ref="asyncErrorFileAppender"/>
+        </root>
+    </springProfile>
+
+    <!--开发环境:打印控制台-->
+    <springProfile name="dev">
+    	<logger name="com.hwc.framework.modules.dao" level="DEBUG"/>
+        <root level="info">
+            <appender-ref ref="CONSOLE"/>
+            <appender-ref ref="asyncFileAppender"/>
+            <appender-ref ref="asyncErrorFileAppender"/>
+        </root>
+    </springProfile>
+
+    <!--测试环境:打印控制台-->
+    <springProfile name="test">
+        <!-- 打印sql -->
+        <logger name="com.hwc.framework.modules.dao" level="DEBUG"/>
+        <root level="info">
+            <appender-ref ref="CONSOLE"/>
+            <appender-ref ref="asyncFileAppender"/>
+            <appender-ref ref="asyncErrorFileAppender"/>
+        </root>
+    </springProfile>
+
+   
+</configuration>

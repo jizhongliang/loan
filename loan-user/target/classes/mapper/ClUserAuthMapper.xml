@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwc.framework.modules.dao.ClUserAuthMapper">
+  <resultMap id="BaseResultMap" type="com.hwc.framework.modules.model.ClUserAuth">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="id_state" jdbcType="VARCHAR" property="idState" />
+    <result column="contact_state" jdbcType="VARCHAR" property="contactState" />
+    <result column="bank_card_state" jdbcType="VARCHAR" property="bankCardState" />
+    <result column="work_info_state" jdbcType="VARCHAR" property="workInfoState" />
+    <result column="other_info_state" jdbcType="VARCHAR" property="otherInfoState" />
+    <result column="credit_state" jdbcType="VARCHAR" property="creditState" />
+  </resultMap>
+
+  <resultMap id="ModelResultMap" type="com.hwc.framework.modules.domain.DUserAuthModel">
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="login_name" property="loginName" jdbcType="VARCHAR" />
+    <result column="real_name" property="realName" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="id_state" property="idState" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="contact_state" property="contactState" jdbcType="VARCHAR" />
+    <result column="bank_card_state" property="bankCardState" jdbcType="VARCHAR" />
+    <result column="work_info_state" property="workInfoState" jdbcType="VARCHAR" />
+    <result column="other_info_state" property="otherInfoState" jdbcType="VARCHAR" />
+    <result column="credit_state" property="creditState" jdbcType="VARCHAR" />
+    <result column="cat" property="cat" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <!-- 用户关键信息查询条件公共引用 -->
+  <sql id="searchUserBy">
+    <trim prefix="where" prefixOverrides="and|or">
+      <if test="userId !='' and userId !=null">
+        and au.user_id = #{userId,jdbcType=BIGINT}
+      </if>
+      <if test="loginName !='' and loginName !=null">
+        and u.login_name like concat("%",#{loginName,jdbcType=VARCHAR},"%")
+      </if>
+      <if test="cat !='' and cat !=null">
+        and u.cat = #{cat,jdbcType=VARCHAR}
+      </if>
+      <if test="phone != null and phone != '' ">
+        and b.phone like  concat("%",#{phone,jdbcType=VARCHAR},"%")
+      </if>
+      <if test="realName != null and realName != '' ">
+        and b.real_name  like concat("%",#{realName,jdbcType=VARCHAR},"%")
+      </if>
+      <if test="idState !='' and idState !=null">
+        and au.id_state = #{idState,jdbcType=VARCHAR}
+      </if>
+      <if test="contactState !='' and contactState !=null">
+        and au.contact_state = #{contactState,jdbcType=VARCHAR}
+      </if>
+      <if test="bankCardState !='' and bankCardState !=null">
+        and au.bank_card_state = #{bankCardState,jdbcType=VARCHAR}
+      </if>
+      <if test="creditState != null and creditState != ''">
+        and au.credit_state = #{creditState,jdbcType=VARCHAR}
+      </if>
+      <if test="workInfoState !='' and workInfoState !=null">
+        and au.work_info_state = #{workInfoState,jdbcType=VARCHAR}
+      </if>
+    </trim>
+  </sql>
+
+  <select id="listUserAuthModelPage" resultMap="ModelResultMap" parameterType="java.util.HashMap">
+    select  au.id,au.user_id,u.login_name,u.cat,b.real_name,b.phone,au.id_state,au.contact_state,au.bank_card_state,au.work_info_state,au.other_info_state,au.credit_state
+    from  cl_user u join cl_user_auth  au  on u.id=au.user_id  join  cl_user_base_info  b  on u.id=b.user_id
+    <include refid="searchUserBy"/>
+    Order BY au.user_id DESC
+  </select>
+
+</mapper>

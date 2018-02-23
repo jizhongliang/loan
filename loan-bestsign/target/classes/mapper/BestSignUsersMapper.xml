@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwc.framework.modules.dao.BestSignUsersMapper">
+  <resultMap id="BaseResultMap" type="com.hwc.framework.modules.model.BestSignUsers">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="certType" jdbcType="VARCHAR" property="certtype" />
+    <result column="certId" jdbcType="VARCHAR" property="certId" />
+    <result column="idno" jdbcType="VARCHAR" property="idNo" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="sign_image" jdbcType="VARCHAR" property="signImage" />
+    <result column="state" jdbcType="VARCHAR" property="state" />
+    <result column="created" jdbcType="TIMESTAMP" property="created" />
+  </resultMap>
+</mapper>

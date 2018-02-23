@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hwc.framework.modules.dao.ClH5UserInfoMapper">
+    <resultMap type="com.hwc.framework.modules.domain.ClH5UserInfo" id="clH5UserInfoMap">
+        <result property="id" column="id"/>
+        <result property="username" column="username"/>
+        <result property="userphone" column="userphone"/>
+        <result property="credit" column="credit"/>
+        <result property="moneyuse" column="moneyUse"/>
+        <result property="borrowtime" column="borrowTime"/>
+        <result property="url" column="url"/>
+        <result property="ip" column="ip"/>
+        <result property="city" column="city"/>
+        <result property="equipment" column="equipment"/>
+        <result property="inviter" column="Inviter"/>
+        <result property="createTime" column="create_time"/>
+    </resultMap>
+    
+    <insert id="save" parameterType="com.hwc.framework.modules.domain.ClH5UserInfo">
+		insert into cl_h5_user_info
+		(
+			`username`, 
+			`userphone`, 
+			`credit`, 
+			`moneyUse`, 
+			`borrowTime`, 
+			`url`, 
+			`ip`, 
+			`city`, 
+			`equipment`, 
+			`Inviter`, 
+			`create_time`
+		)
+		values
+		(
+			#{username}, 
+			#{userphone}, 
+			#{credit}, 
+			#{moneyuse}, 
+			#{borrowtime}, 
+			#{url}, 
+			#{ip}, 
+			#{city}, 
+			#{equipment}, 
+			#{inviter}, 
+			#{createTime}
+		)
+	</insert>
+</mapper>

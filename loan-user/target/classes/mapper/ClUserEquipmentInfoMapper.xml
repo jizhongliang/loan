@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwc.framework.modules.dao.ClUserEquipmentInfoMapper">
+  <resultMap id="BaseResultMap" type="com.hwc.framework.modules.model.ClUserEquipmentInfo">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="uuid" jdbcType="VARCHAR" property="uuid" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="operating_system" jdbcType="VARCHAR" property="operatingSystem" />
+    <result column="system_versions" jdbcType="VARCHAR" property="systemVersions" />
+    <result column="phone_name" jdbcType="VARCHAR" property="phoneName" />
+    <result column="phone_type" jdbcType="VARCHAR" property="phoneType" />
+    <result column="phone_brand" jdbcType="VARCHAR" property="phoneBrand" />
+    <result column="mobileCarrier" jdbcType="VARCHAR" property="mobilecarrier" />
+    <result column="phone_mark" jdbcType="VARCHAR" property="phoneMark" />
+    <result column="mac" jdbcType="VARCHAR" property="mac" />
+    <result column="screen" jdbcType="VARCHAR" property="screen" />
+    <result column="version_name" jdbcType="VARCHAR" property="versionName" />
+    <result column="version_code" jdbcType="VARCHAR" property="versionCode" />
+  </resultMap>
+</mapper>

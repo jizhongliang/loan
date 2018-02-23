@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="GBK" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- cl_quartz_info��:��ʱ��������ģ�� -->
+<mapper namespace="com.hwc.framework.modules.dao.ClQuartzInfoMapper">
+
+	<resultMap id="BaseResultMap" type="com.hwc.framework.modules.model.ClQuartzInfo">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="code" property="code" jdbcType="VARCHAR" />
+		<result column="cycle" property="cycle" jdbcType="VARCHAR" />
+		<result column="class_name" property="className" jdbcType="VARCHAR" />
+		<result column="succeed" property="succeed" jdbcType="INTEGER" />
+		<result column="fail" property="fail" jdbcType="INTEGER" />
+		<result column="state" property="state" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+	<!--������sql��ѯ�ֶ� ��������...-->
+	<sql id="Base_Column_List">
+		id,name,`code`,cycle,class_name,succeed,fail,state,create_time
+	</sql>
+
+	<!-- ������sql��ѯ������������ -->
+	<sql id="searchBy">
+		<trim prefix="where" prefixOverrides="and|or">
+			<if test=" id !=null and id !=''">
+				id  = #{id,jdbcType=INTEGER}
+			</if>
+			<if test="name !=null and name !=''">
+				and name = #{name,jdbcType=VARCHAR}
+			</if>
+			<if test="code !=null and code !=''">
+				and `code` = #{code,jdbcType=VARCHAR}
+			</if>
+			<if test="cycle !=null and cycle !=''">
+				and cycle = #{cycle,jdbcType=VARCHAR}
+			</if>
+			<if test="className !=null and className !=''">
+				and class_name = #{className,jdbcType=VARCHAR}
+			</if>
+			<if test="succeed !=null and succeed !=''">
+				and succeed = #{succeed,jdbcType=INTEGER}
+			</if>
+			<if test="fail !=null and fail !=''">
+				and fail = #{fail,jdbcType=INTEGER}
+			</if>
+			<if test="state !=null and state !=''">
+				and state = #{state,jdbcType=VARCHAR}
+			</if>
+			<if test="createTime !=null">
+				and create_time = #{createTime,jdbcType=TIMESTAMP}
+			</if>
+		</trim>
+	</sql>
+
+    <select id="page" resultType="com.hwc.framework.modules.model.QuartzInfoModel" parameterType="java.util.HashMap">
+    	select 
+       		info.id,info.name,info.`code`,info.cycle,info.class_name,info.succeed,info.fail,info.state,info.create_time 
+		from cl_quartz_info info 
+        <trim prefix="where" prefixOverrides="and|or">
+	        <if test="name != null and name != '' ">        
+	                info.name like concat("%",#{name,jdbcType=VARCHAR},"%") 
+	        </if>
+        </trim>
+    </select>
+
+	<update id="updateSelective"  parameterType="java.util.HashMap">
+		update cl_quartz_info
+		<set>
+			<if test="name != null and name != '' ">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="code != null and code != '' ">
+				`code` = #{code,jdbcType=VARCHAR},
+			</if>
+			<if test="cycle != null and cycle != '' ">
+				cycle = #{cycle,jdbcType=VARCHAR},
+			</if>
+			<if test="className != null and className != '' ">
+				class_name = #{className,jdbcType=VARCHAR},
+			</if>
+			<if test="succeed != null and succeed != '' ">
+				succeed = #{succeed,jdbcType=INTEGER},
+			</if>
+			<if test="fail != null and fail != '' ">
+				fail = #{fail,jdbcType=INTEGER},
+			</if>
+			<if test="state != null and state != '' ">
+				state = #{state,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime !=null">
+				create_time = #{createTime,jdbcType=TIMESTAMP}
+			</if>
+		</set>
+		where id = #{id ,jdbcType=INTEGER}
+	</update>
+
+	<select id="listSelective" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+		select
+		<include refid="Base_Column_List" />
+		from cl_quartz_info
+		<include refid="searchBy"/>
+	</select>
+
+	<select id="findSelective" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+		select
+		<include refid="Base_Column_List" />
+		from cl_quartz_info
+		<include refid="searchBy"/>
+	</select>
+    
+</mapper>

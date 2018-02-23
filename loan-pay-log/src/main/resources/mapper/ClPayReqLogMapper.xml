@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwc.framework.modules.dao.ClPayReqLogMapper">
+  <resultMap id="BaseResultMap" type="com.hwc.framework.modules.model.ClPayReqLog">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="service" jdbcType="VARCHAR" property="service" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="borrow_id" jdbcType="BIGINT" property="borrowId" />
+    <result column="order_no" jdbcType="VARCHAR" property="orderNo" />
+    <result column="return_time" jdbcType="TIMESTAMP" property="returnTime" />
+    <result column="notify_time" jdbcType="TIMESTAMP" property="notifyTime" />
+    <result column="result" jdbcType="INTEGER" property="result" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="ip" jdbcType="VARCHAR" property="ip" />
+    <result column="params" jdbcType="LONGVARCHAR" property="params" />
+    <result column="req_detail_params" jdbcType="LONGVARCHAR" property="reqDetailParams" />
+    <result column="return_params" jdbcType="LONGVARCHAR" property="returnParams" />
+    <result column="notify_params" jdbcType="LONGVARCHAR" property="notifyParams" />
+  </resultMap>
+</mapper>

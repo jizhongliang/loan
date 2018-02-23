@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/loan.iml" filepath="$PROJECT_DIR$/loan.iml" />
+      <module fileurl="file://$PROJECT_DIR$/loan-admin/loan-admin.iml" filepath="$PROJECT_DIR$/loan-admin/loan-admin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/loan-bestsign/loan-bestsign.iml" filepath="$PROJECT_DIR$/loan-bestsign/loan-bestsign.iml" />
+      <module fileurl="file://$PROJECT_DIR$/loan-borrow/loan-borrow.iml" filepath="$PROJECT_DIR$/loan-borrow/loan-borrow.iml" />
+      <module fileurl="file://$PROJECT_DIR$/loan-cloud-admin/loan-cloud-admin.iml" filepath="$PROJECT_DIR$/loan-cloud-admin/loan-cloud-admin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/loan-cloud-eureka/loan-cloud-eureka.iml" filepath="$PROJECT_DIR$/loan-cloud-eureka/loan-cloud-eureka.iml" />
+      <module fileurl="file://$PROJECT_DIR$/loan-cloud-gateway/loan-cloud-gateway.iml" filepath="$PROJECT_DIR$/loan-cloud-gateway/loan-cloud-gateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/loan-core/loan-core.iml" filepath="$PROJECT_DIR$/loan-core/loan-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/loan-notity/loan-notity.iml" filepath="$PROJECT_DIR$/loan-notity/loan-notity.iml" />
+      <module fileurl="file://$PROJECT_DIR$/loan-p2p-service/loan-p2p.iml" filepath="$PROJECT_DIR$/loan-p2p-service/loan-p2p.iml" />
+      <module fileurl="file://$PROJECT_DIR$/loan-pay/loan-pay.iml" filepath="$PROJECT_DIR$/loan-pay/loan-pay.iml" />
+      <module fileurl="file://$PROJECT_DIR$/loan-pay-baofu/loan-pay-baofu.iml" filepath="$PROJECT_DIR$/loan-pay-baofu/loan-pay-baofu.iml" />
+      <module fileurl="file://$PROJECT_DIR$/loan-pay-log/loan-pay-log.iml" filepath="$PROJECT_DIR$/loan-pay-log/loan-pay-log.iml" />
+      <module fileurl="file://$PROJECT_DIR$/loan-sdk/loan-sdk.iml" filepath="$PROJECT_DIR$/loan-sdk/loan-sdk.iml" />
+      <module fileurl="file://$PROJECT_DIR$/loan-user/loan-user.iml" filepath="$PROJECT_DIR$/loan-user/loan-user.iml" />
+    </modules>
+  </component>
+</project>

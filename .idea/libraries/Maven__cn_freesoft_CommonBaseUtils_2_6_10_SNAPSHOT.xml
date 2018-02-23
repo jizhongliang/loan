@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: cn.freesoft:CommonBaseUtils:2.6.10-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../../repository/repository/cn/freesoft/CommonBaseUtils/2.6.10-SNAPSHOT/CommonBaseUtils-2.6.10-20171221.024226-1.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/../../../repository/repository/cn/freesoft/CommonBaseUtils/2.6.10-SNAPSHOT/CommonBaseUtils-2.6.10-20171221.024226-1-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../../../repository/repository/cn/freesoft/CommonBaseUtils/2.6.10-SNAPSHOT/CommonBaseUtils-2.6.10-20171221.024226-1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

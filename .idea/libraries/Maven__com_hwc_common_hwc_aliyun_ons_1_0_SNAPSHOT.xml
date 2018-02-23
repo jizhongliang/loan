@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.hwc.common:hwc-aliyun-ons:1.0-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../../repository/repository/com/hwc/common/hwc-aliyun-ons/1.0-SNAPSHOT/hwc-aliyun-ons-1.0-20171222.010201-1.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/../../../repository/repository/com/hwc/common/hwc-aliyun-ons/1.0-SNAPSHOT/hwc-aliyun-ons-1.0-20171222.010201-1-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../../../repository/repository/com/hwc/common/hwc-aliyun-ons/1.0-SNAPSHOT/hwc-aliyun-ons-1.0-20171222.010201-1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

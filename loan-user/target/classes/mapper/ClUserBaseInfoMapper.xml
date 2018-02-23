@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwc.framework.modules.dao.ClUserBaseInfoMapper">
+  <resultMap id="BaseResultMap" type="com.hwc.framework.modules.model.ClUserBaseInfo">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="real_name" jdbcType="VARCHAR" property="realName" />
+    <result column="age" jdbcType="INTEGER" property="age" />
+    <result column="sex" jdbcType="VARCHAR" property="sex" />
+    <result column="national" jdbcType="VARCHAR" property="national" />
+    <result column="id_no" jdbcType="VARCHAR" property="idNo" />
+    <result column="id_addr" jdbcType="VARCHAR" property="idAddr" />
+    <result column="living_img" jdbcType="VARCHAR" property="livingImg" />
+    <result column="ocr_img" jdbcType="VARCHAR" property="ocrImg" />
+    <result column="front_img" jdbcType="VARCHAR" property="frontImg" />
+    <result column="back_img" jdbcType="VARCHAR" property="backImg" />
+    <result column="education" jdbcType="VARCHAR" property="education" />
+    <result column="marry_state" jdbcType="VARCHAR" property="marryState" />
+    <result column="company_name" jdbcType="VARCHAR" property="companyName" />
+    <result column="company_phone" jdbcType="VARCHAR" property="companyPhone" />
+    <result column="company_addr" jdbcType="VARCHAR" property="companyAddr" />
+    <result column="company_detail_addr" jdbcType="VARCHAR" property="companyDetailAddr" />
+    <result column="company_coordinate" jdbcType="VARCHAR" property="companyCoordinate" />
+    <result column="salary" jdbcType="VARCHAR" property="salary" />
+    <result column="working_years" jdbcType="VARCHAR" property="workingYears" />
+    <result column="working_img" jdbcType="VARCHAR" property="workingImg" />
+    <result column="signature_img" jdbcType="VARCHAR" property="signatureImg" />
+    <result column="live_time" jdbcType="VARCHAR" property="liveTime" />
+    <result column="live_addr" jdbcType="VARCHAR" property="liveAddr" />
+    <result column="live_detail_addr" jdbcType="VARCHAR" property="liveDetailAddr" />
+    <result column="live_coordinate" jdbcType="VARCHAR" property="liveCoordinate" />
+    <result column="phone_server_pwd" jdbcType="VARCHAR" property="phoneServerPwd" />
+    <result column="register_addr" jdbcType="VARCHAR" property="registerAddr" />
+    <result column="register_coordinate" jdbcType="VARCHAR" property="registerCoordinate" />
+    <result column="state" jdbcType="VARCHAR" property="state" />
+    <result column="black_reason" jdbcType="VARCHAR" property="blackReason" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+
+  <!--用户的基本信息的sql查询字段 公共引用...-->
+  <resultMap id="BaseInfoModelMap" extends="BaseResultMap"  type="com.hwc.framework.modules.model.ManagerUserModel">
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="login_name" property="loginName" jdbcType="VARCHAR" />
+    <!--<result column="login_pwd" property="loginPwd" jdbcType="VARCHAR" />-->
+    <result column="loginpwd_modify_time" property="loginpwdModifyTime" jdbcType="TIMESTAMP" />
+    <result column="regist_time" property="registTime" jdbcType="TIMESTAMP" />
+    <result column="register_client" property="registerClient" jdbcType="VARCHAR" />
+    <!--<result column="trade_pwd" property="tradePwd" jdbcType="VARCHAR" />-->
+    <result column="tradepwd_modify_time" property="tradepwdModifyTime" jdbcType="TIMESTAMP" />
+    <result column="uuid" property="uuid" jdbcType="VARCHAR" />
+    <result column="invitation_code" property="invitationCode" jdbcType="VARCHAR" />
+    <result column="cat" property="cat"  jdbcType="VARCHAR"/>
+  </resultMap>
+
+  <select id="getBaseModelByUserId" resultMap="BaseInfoModelMap" parameterType="java.lang.Long">
+    select
+    u.login_name,u.login_pwd,u.loginpwd_modify_time,u.regist_time,u.register_client,u.trade_pwd,u.tradepwd_modify_time,u.uuid,u.invitation_code,u.cat,
+    baseInfo.id,baseInfo.user_id,baseInfo.real_name,baseInfo.id_no,baseInfo.id_addr,baseInfo.company_name,baseInfo.company_addr,baseInfo.sex,baseInfo.live_addr,baseInfo.live_time,
+    baseInfo.marry_state,baseInfo.phone,baseInfo.phone_server_pwd,baseInfo.national,baseInfo.education,baseInfo.working_years,baseInfo.salary,baseInfo.create_time,
+    baseInfo.update_time,baseInfo.user_id,baseInfo.live_detail_addr,baseInfo.living_img,baseInfo.front_img,baseInfo.back_img,baseInfo.ocr_img,baseInfo.live_coordinate,
+    baseInfo.register_coordinate,baseInfo.register_addr,baseInfo.state,baseInfo.black_reason,baseInfo.company_phone,baseInfo.age
+    from  cl_user u
+    left join cl_user_base_info baseInfo on u.id = baseInfo.user_id
+    where u.id = #{userId,jdbcType=BIGINT}
+  </select>
+</mapper>

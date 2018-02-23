@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwc.framework.modules.dao.ClBorrowRepayLogMapper">
+    <resultMap id="BaseResultMap" type="com.hwc.framework.modules.model.ClBorrowRepayLog">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="repay_id" jdbcType="BIGINT" property="repayId"/>
+        <result column="borrow_id" jdbcType="BIGINT" property="borrowId"/>
+        <result column="user_id" jdbcType="BIGINT" property="userId"/>
+        <result column="amount" jdbcType="DECIMAL" property="amount"/>
+        <result column="penalty_day" jdbcType="INTEGER" property="penaltyDay"/>
+        <result column="penalty_amout" jdbcType="DECIMAL" property="penaltyAmout"/>
+        <result column="repay_way" jdbcType="VARCHAR" property="repayWay"/>
+        <result column="repay_account" jdbcType="VARCHAR" property="repayAccount"/>
+        <result column="serial_number" jdbcType="VARCHAR" property="serialNumber"/>
+        <result column="refund_deduction" jdbcType="DECIMAL" property="refundDeduction"/>
+        <result column="pay_time" jdbcType="TIMESTAMP" property="payTime"/>
+        <result column="repay_time" jdbcType="TIMESTAMP" property="repayTime"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+    </resultMap>
+
+    <resultMap id="payLogResultMap" type="com.hwc.framework.modules.domain.RepayLogBean">
+        <id column="borrow_id" jdbcType="BIGINT" property="borrowId"/>
+        <result column="repay_id" jdbcType="BIGINT" property="repayId"/>
+        <result column="order_no" jdbcType="VARCHAR" property="orderNo"/>
+        <result column="user_id" jdbcType="BIGINT" property="userId"/>
+        <result column="periods" jdbcType="INTEGER" property="periods"/>
+        <result column="amount" jdbcType="DECIMAL" property="borrowAmount"/>
+        <result column="interest" jdbcType="DECIMAL" property="interest"/>
+        <result column="repay_total_amount" jdbcType="DECIMAL" property="repayTotalAmount"/>
+        <result column="pay_amount" jdbcType="DECIMAL" property="hasPayAmount"/>
+        <result column="repay_period" jdbcType="INTEGER" property="repay_period"/>
+        <result column="repay_amount" jdbcType="DECIMAL" property="repayAmount"/>
+        <result column="penalty_day" jdbcType="INTEGER" property="penaltyDay"/>
+        <result column="penalty_amout" jdbcType="DECIMAL" property="penaltyAmout"/>
+        <result column="repay_way" jdbcType="VARCHAR" property="repayWay"/>
+        <result column="repay_account" jdbcType="VARCHAR" property="repayAccount"/>
+        <result column="serial_number" jdbcType="VARCHAR" property="serialNumber"/>
+        <result column="repay_time" jdbcType="TIMESTAMP" property="repayTime"/>
+        <result column="pay_time" jdbcType="TIMESTAMP" property="payTime"/>
+        <result column="repay_time" jdbcType="TIMESTAMP" property="repayTime"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="mobile" jdbcType="VARCHAR" property="mobile"/>
+    </resultMap>
+    <sql id="searchModelBy">
+
+        <if test="name !='' and name !=null">
+            and c.name like concat("%",#{name,jdbcType=VARCHAR},"%")
+        </if>
+        <if test="orderNo !='' and orderNo !=null">
+            and c.order_no = #{orderNo,jdbcType=VARCHAR}
+        </if>
+        <if test="mobile !='' and mobile !=null">
+            and c.mobile = #{mobile,jdbcType=VARCHAR}
+        </if>
+        <if test="account != null and account != '' ">
+            and l.repay_account = #{repay_account,jdbcType=VARCHAR}
+        </if>
+        <if test="repayWay != null and repayWay != '' ">
+            and l.repay_way = #{repayWay,jdbcType=VARCHAR}
+        </if>
+        <if test="scenes != null and scenes != '' ">
+            and l.scenes = #{scenes,jdbcType=VARCHAR}
+        </if>
+        <if test="start != null">
+            and l.repay_time &gt;= #{start,jdbcType=TIMESTAMP}
+        </if>
+        <if test="end  != null">
+            and l.repay_time &lt; #{end,jdbcType=TIMESTAMP}
+        </if>
+
+    </sql>
+    <select id="payLogList" resultMap="payLogResultMap" parameterType="java.util.HashMap">
+        select c.name,c.mobile,r.seq repay_period,c.id borrow_id,r.amount repay_total_amount,
+        c.order_no,c.amount,c.periods,r.amount repay_amount,1,r.interest,l.amount
+        pay_amount,l.penalty_amout,l.penalty_day,l.repay_time
+        pay_time,r.repay_time,l.repay_way,l.repay_account,l.serial_number From cl_borrow c,cl_borrow_repay r,
+        cl_borrow_repay_log l
+        where c.id=l.borrow_id and r.borrow_id=c.id and r.id=l.repay_id
+        <include refid="searchModelBy"/>
+        order by l.pay_time desc
+    </select>
+    <select id="loadRepayLately" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        SELECT * FROM cl_borrow_repay_log WHERE borrow_id = #{borrowId,jdbcType=BIGINT} ORDER BY repay_id DESC LIMIT 1
+    </select>
+</mapper>

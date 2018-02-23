@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwc.framework.modules.dao.ArcBasecodeMapper">
+  <resultMap id="BaseResultMap" type="com.hwc.framework.modules.model.ArcBasecode">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="cat" jdbcType="VARCHAR" property="cat" />
+    <id column="code" jdbcType="VARCHAR" property="code" />
+    <result column="descript" jdbcType="VARCHAR" property="descript" />
+    <result column="sys" jdbcType="VARCHAR" property="sys" />
+    <result column="halt" jdbcType="VARCHAR" property="halt" />
+    <result column="grp" jdbcType="VARCHAR" property="grp" />
+    <result column="cby" jdbcType="BIGINT" property="cby" />
+    <result column="changed" jdbcType="TIMESTAMP" property="changed" />
+    <result column="seq" jdbcType="INTEGER" property="seq" />
+    <result column="exts1" jdbcType="VARCHAR" property="exts1" />
+    <result column="exts2" jdbcType="VARCHAR" property="exts2" />
+    <result column="exts3" jdbcType="VARCHAR" property="exts3" />
+    <result column="exts4" jdbcType="VARCHAR" property="exts4" />
+  </resultMap>
+</mapper>

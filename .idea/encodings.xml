@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/loan-admin" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/loan-bestsign" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/loan-borrow" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/loan-cloud-admin" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/loan-cloud-eureka" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/loan-cloud-gateway" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/loan-core" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/loan-notity" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/loan-p2p-service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/loan-pay" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/loan-pay-baofu" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/loan-pay-log" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/loan-sdk" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/loan-user" charset="UTF-8" />
+  </component>
+</project>

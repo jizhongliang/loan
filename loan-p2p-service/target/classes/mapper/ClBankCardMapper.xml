@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwc.framework.modules.dao.ClBankCardMapper">
+  <resultMap id="BaseResultMap" type="com.hwc.framework.modules.model.ClBankCard">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="bank" jdbcType="VARCHAR" property="bank" />
+    <result column="card_no" jdbcType="VARCHAR" property="cardNo" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="agree_no" jdbcType="VARCHAR" property="agreeNo" />
+    <result column="bind_time" jdbcType="TIMESTAMP" property="bindTime" />
+  </resultMap>
+
+  <select id="findBorrowerUserinfos" resultType="com.hwc.framework.modules.domain.BorrowerUserinfo">
+    SELECT b.amount boAmount,b.time_limit termLoan,b.`name` boUserName,b.mobile,bc.card_no boAccNo,bc.bank boBankName,
+    bc.bank_code boBankNo,ubi.id_no idCard,ubi.front_img idCardUrl,bc.phone transMobile ,b.order_no thirdTransaction,
+    CASE ubi.sex  WHEN '男' THEN    0    ELSE   1   END as sex,uec1.`name` emergencyContact1,uec1.phone contactPhone1,
+    uec2.`name` emergencyContact2,uec2.phone contactPhone2,uad.zhengxin_data creditReportUrl,cwc.vocation industry,
+    bsc.contractId boContractNo,bsc.contrace_url agreementUrl
+    FROM cl_borrow b LEFT JOIN cl_bank_card bc on bc.user_id = b.user_id
+	LEFT JOIN cl_user_auth ua on (ua.user_id = b.user_id and ua.id_state = 30)
+	LEFT JOIN cl_user_base_info ubi on ubi.user_id = b.user_id
+    LEFT JOIN cl_user_auth_data uad on uad.user_id = b.user_id
+    LEFT JOIN cl_user_emer_contacts uec1 on (uec1.user_id = b.user_id and uec1.type = 10)
+    LEFT JOIN cl_user_emer_contacts uec2 on (uec2.user_id = b.user_id and uec2.type = 20)
+    LEFT JOIN best_sign_contract bsc on bsc.contractId = b.contract_id LEFT JOIN cl_w_contacts cwc ON cwc.phone = b.mobile
+    WHERE b.borrow_type = 'X' and ubi.id_no is not NULL and ubi.front_img is not NULL and b.state IN ('20','26')
+  </select>
+</mapper>

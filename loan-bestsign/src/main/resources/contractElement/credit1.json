@@ -1,0 +1,93 @@
+[
+   {
+      "pageNum": "1",
+      "x": "0.740",
+      "y": "0.147",
+      "type": "text",
+      "value": "${num}",
+      "fontSize": "10"
+   },
+   {
+      "pageNum": "1",
+      "x": "0.28",
+      "y": "0.29",
+      "type": "text",
+      "value": "${realName}",
+      "fontSize": "10"
+   },
+   {
+      "pageNum": "1",
+      "x": "0.28",
+      "y": "0.33",
+      "type": "text",
+      "value": "${phone}",
+      "fontSize": "10"
+   },
+   {
+      "pageNum": "1",
+      "x": "0.584",
+      "y": "0.29",
+      "type": "text",
+      "value": "${idNo}",
+      "fontSize": "10"
+   },
+   {
+      "pageNum": "1",
+      "x": "0.53",
+      "y": "0.325",
+      "type": "text",
+      "value": "${address}",
+      "fontSize": "10"
+   },
+   {
+      "pageNum": "1",
+      "x": "0.28",
+      "y": "0.585",
+      "type": "text",
+      "value": "${address}",
+      "fontSize": "10"
+   },
+   {
+      "pageNum": "1",
+      "x": "0.48",
+      "y": "0.625",
+      "type": "text",
+      "value": "${original_price}",
+      "fontSize": "10"
+   },
+   {
+      "pageNum": "1",
+      "x": "0.28",
+      "y": "0.405",
+      "type": "text",
+      "value": "${quota}",
+      "fontSize": "10"
+   },
+   {
+      "pageNum": "1",
+      "x": "0.40",
+      "y": "0.405",
+      "type": "text",
+      "value": "${quota_descript}",
+      "fontSize": "10"
+   },
+
+
+   {
+      "pageNum": "2",
+      "x": "0.735",
+      "y": "0.240",
+      "type": "text",
+      "value": "${loan3_date}",
+      "fontSize": "10"
+   },
+   {
+      "pageNum": "2",
+      "x": "0.227",
+      "y": "0.180",
+      "type": "image",
+      "value": "${loan3_iamge}",
+      "fontSize": "10"
+   }
+
+]

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwc.framework.modules.dao.SysRelationMapper">
+  <resultMap id="BaseResultMap" type="com.hwc.framework.modules.model.SysRelation">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="menuid" jdbcType="INTEGER" property="menuid" />
+    <result column="roleid" jdbcType="INTEGER" property="roleid" />
+  </resultMap>
+</mapper>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwc.framework.modules.dao.MenuMapper">
+  <resultMap id="BaseResultMap" type="com.hwc.framework.modules.model.SysMenu">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="pcode" jdbcType="VARCHAR" property="pcode" />
+    <result column="pcodes" jdbcType="VARCHAR" property="pcodes" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="icon" jdbcType="VARCHAR" property="icon" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="num" jdbcType="INTEGER" property="num" />
+    <result column="levels" jdbcType="INTEGER" property="levels" />
+    <result column="ismenu" jdbcType="INTEGER" property="ismenu" />
+    <result column="tips" jdbcType="VARCHAR" property="tips" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="isopen" jdbcType="INTEGER" property="isopen" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    m.id, m.code, m.pcode, m.pcodes, m.name, m.icon, m.url, m.num, m.levels, m.ismenu, m.status, m.isopen, m.tips
+  </sql>
+
+  <select id="getMenuListByUserRole" resultType="com.hwc.framework.modules.model.SysMenu">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM sys_relation r LEFT join sys_menu m on r.menuid = m.id
+    WHERE m.ismenu =1 and r.roleid = #{roleId}
+    ORDER BY m.num ASC
+  </select>
+</mapper>

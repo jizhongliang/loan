@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwc.framework.modules.dao.SysChannelAppMapper">
+  <resultMap id="BaseResultMap" type="com.hwc.framework.modules.model.SysChannelApp">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="channel_id" jdbcType="INTEGER" property="channelId" />
+    <result column="app_type" jdbcType="VARCHAR" property="appType" />
+    <result column="latest_version" jdbcType="VARCHAR" property="latestVersion" />
+    <result column="min_version" jdbcType="VARCHAR" property="minVersion" />
+    <result column="download_url" jdbcType="VARCHAR" property="downloadUrl" />
+    <result column="state" jdbcType="VARCHAR" property="state" />
+    <result column="is_force_update" jdbcType="VARCHAR" property="isForceUpdate" />
+    </resultMap>
+  <sql id="Base_Column_List">
+    id,channel_id,app_type,latest_version,min_version,download_url,state,is_force_update
+  </sql>
+
+  <select id="getChannelAppByType" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM cl_channel_app
+    WHERE app_type= #{type}
+    limit 0,1
+  </select>
+</mapper>

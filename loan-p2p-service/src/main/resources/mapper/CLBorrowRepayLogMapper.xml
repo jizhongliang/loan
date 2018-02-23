@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hwc.framework.modules.dao.CLBorrowRepayLogMapper" >
+  <resultMap id="BaseResultMap" type="com.hwc.framework.modules.model.CLBorrowRepayLog" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="repay_id" property="repayId" jdbcType="BIGINT" />
+    <result column="borrow_id" property="borrowId" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="amount" property="amount" jdbcType="DECIMAL" />
+    <result column="penalty_day" property="penaltyDay" jdbcType="INTEGER" />
+    <result column="penalty_amout" property="penaltyAmout" jdbcType="DECIMAL" />
+    <result column="repay_way" property="repayWay" jdbcType="VARCHAR" />
+    <result column="repay_account" property="repayAccount" jdbcType="VARCHAR" />
+    <result column="serial_number" property="serialNumber" jdbcType="VARCHAR" />
+    <result column="refund_deduction" property="refundDeduction" jdbcType="DECIMAL" />
+    <result column="pay_time" property="payTime" jdbcType="TIMESTAMP" />
+    <result column="repay_time" property="repayTime" jdbcType="TIMESTAMP" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, repay_id, borrow_id, user_id, amount, penalty_day, penalty_amout, repay_way, 
+    repay_account, serial_number, refund_deduction, pay_time, repay_time, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from cl_borrow_repay_log
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteRepayLogByRepayId" parameterType="java.lang.Long" >
+    delete from cl_borrow_repay_log
+    where repay_id = #{repayId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from cl_borrow_repay_log
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.hwc.framework.modules.model.CLBorrowRepayLog" >
+    insert into cl_borrow_repay_log (id, repay_id, borrow_id, 
+      user_id, amount, penalty_day, 
+      penalty_amout, repay_way, repay_account, 
+      serial_number, refund_deduction, pay_time, 
+      repay_time, create_time)
+    values (#{id,jdbcType=BIGINT}, #{repayId,jdbcType=BIGINT}, #{borrowId,jdbcType=BIGINT}, 
+      #{userId,jdbcType=BIGINT}, #{amount,jdbcType=DECIMAL}, #{penaltyDay,jdbcType=INTEGER}, 
+      #{penaltyAmout,jdbcType=DECIMAL}, #{repayWay,jdbcType=VARCHAR}, #{repayAccount,jdbcType=VARCHAR}, 
+      #{serialNumber,jdbcType=VARCHAR}, #{refundDeduction,jdbcType=DECIMAL}, #{payTime,jdbcType=TIMESTAMP}, 
+      #{repayTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hwc.framework.modules.model.CLBorrowRepayLog" >
+    insert into cl_borrow_repay_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="repayId != null" >
+        repay_id,
+      </if>
+      <if test="borrowId != null" >
+        borrow_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="penaltyDay != null" >
+        penalty_day,
+      </if>
+      <if test="penaltyAmout != null" >
+        penalty_amout,
+      </if>
+      <if test="repayWay != null" >
+        repay_way,
+      </if>
+      <if test="repayAccount != null" >
+        repay_account,
+      </if>
+      <if test="serialNumber != null" >
+        serial_number,
+      </if>
+      <if test="refundDeduction != null" >
+        refund_deduction,
+      </if>
+      <if test="payTime != null" >
+        pay_time,
+      </if>
+      <if test="repayTime != null" >
+        repay_time,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="repayId != null" >
+        #{repayId,jdbcType=BIGINT},
+      </if>
+      <if test="borrowId != null" >
+        #{borrowId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="penaltyDay != null" >
+        #{penaltyDay,jdbcType=INTEGER},
+      </if>
+      <if test="penaltyAmout != null" >
+        #{penaltyAmout,jdbcType=DECIMAL},
+      </if>
+      <if test="repayWay != null" >
+        #{repayWay,jdbcType=VARCHAR},
+      </if>
+      <if test="repayAccount != null" >
+        #{repayAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="serialNumber != null" >
+        #{serialNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="refundDeduction != null" >
+        #{refundDeduction,jdbcType=DECIMAL},
+      </if>
+      <if test="payTime != null" >
+        #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="repayTime != null" >
+        #{repayTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateRepayLogInfo" parameterType="com.hwc.framework.modules.model.CLBorrowRepayLog" >
+    update cl_borrow_repay_log
+    <set >
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="serialNumber != null" >
+        serial_number = #{serialNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="repayTime != null" >
+        repay_time = #{repayTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where repay_id = #{repayId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hwc.framework.modules.model.CLBorrowRepayLog" >
+    update cl_borrow_repay_log
+    <set >
+      <if test="repayId != null" >
+        repay_id = #{repayId,jdbcType=BIGINT},
+      </if>
+      <if test="borrowId != null" >
+        borrow_id = #{borrowId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="penaltyDay != null" >
+        penalty_day = #{penaltyDay,jdbcType=INTEGER},
+      </if>
+      <if test="penaltyAmout != null" >
+        penalty_amout = #{penaltyAmout,jdbcType=DECIMAL},
+      </if>
+      <if test="repayWay != null" >
+        repay_way = #{repayWay,jdbcType=VARCHAR},
+      </if>
+      <if test="repayAccount != null" >
+        repay_account = #{repayAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="serialNumber != null" >
+        serial_number = #{serialNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="refundDeduction != null" >
+        refund_deduction = #{refundDeduction,jdbcType=DECIMAL},
+      </if>
+      <if test="payTime != null" >
+        pay_time = #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="repayTime != null" >
+        repay_time = #{repayTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hwc.framework.modules.model.CLBorrowRepayLog" >
+    update cl_borrow_repay_log
+    set repay_id = #{repayId,jdbcType=BIGINT},
+      borrow_id = #{borrowId,jdbcType=BIGINT},
+      user_id = #{userId,jdbcType=BIGINT},
+      amount = #{amount,jdbcType=DECIMAL},
+      penalty_day = #{penaltyDay,jdbcType=INTEGER},
+      penalty_amout = #{penaltyAmout,jdbcType=DECIMAL},
+      repay_way = #{repayWay,jdbcType=VARCHAR},
+      repay_account = #{repayAccount,jdbcType=VARCHAR},
+      serial_number = #{serialNumber,jdbcType=VARCHAR},
+      refund_deduction = #{refundDeduction,jdbcType=DECIMAL},
+      pay_time = #{payTime,jdbcType=TIMESTAMP},
+      repay_time = #{repayTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

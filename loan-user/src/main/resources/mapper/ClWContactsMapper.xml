@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwc.framework.modules.dao.ClWContactsMapper">
+  <resultMap id="BaseResultMap" type="com.hwc.framework.modules.model.ClWContacts">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="id_no" jdbcType="VARCHAR" property="idNo" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="src" jdbcType="VARCHAR" property="src" />
+    <result column="state" jdbcType="VARCHAR" property="state" />
+    <result column="is_credit" jdbcType="VARCHAR" property="isCredit" />
+    <result column="is_dy" jdbcType="VARCHAR" property="isDy" />
+    <result column="is_borrow" jdbcType="VARCHAR" property="isBorrow" />
+    <result column="person_income" jdbcType="DECIMAL" property="personIncome" />
+    <result column="education" jdbcType="VARCHAR" property="education" />
+    <result column="live_addr" jdbcType="VARCHAR" property="liveAddr" />
+    <result column="live_community" jdbcType="VARCHAR" property="liveCommunity" />
+    <result column="dy_value" jdbcType="DECIMAL" property="dyValue" />
+    <result column="dy_value_discount" jdbcType="DECIMAL" property="dyValueDiscount" />
+    <result column="dy_city" jdbcType="VARCHAR" property="dyCity" />
+    <result column="company_name" jdbcType="VARCHAR" property="companyName" />
+    <result column="company_type" jdbcType="VARCHAR" property="companyType" />
+    <result column="company_addr" jdbcType="VARCHAR" property="companyAddr" />
+    <result column="borrow_quota" jdbcType="DECIMAL" property="borrowQuota" />
+    <result column="updated" jdbcType="TIMESTAMP" property="updated" />
+    <result column="created" jdbcType="TIMESTAMP" property="created" />
+
+ 	<result column="tips_phone" jdbcType="VARCHAR" property="tipsPhone" />
+    <result column="original_limit" jdbcType="DECIMAL" property="originalLimit" />
+    <result column="surplus_limit" jdbcType="DECIMAL" property="surplusLimit" />
+    <result column="is_availability" jdbcType="VARCHAR" property="isAvailability" />
+    <result column="borrowId" jdbcType="VARCHAR" property="borrowId" />
+    <result column="declaration_company" jdbcType="VARCHAR" property="declarationCompany" />
+    <result column="declaration_people" jdbcType="VARCHAR" property="declarationPeople" />
+    <result column="mortgage_testify" jdbcType="VARCHAR" property="mortgageTestify" />
+    <result column="city_code" jdbcType="VARCHAR" property="cityCode" />
+    <result column="parking_position" jdbcType="VARCHAR" property="parkingPosition" />
+    <result column="msg" jdbcType="VARCHAR" property="msg" />
+  </resultMap>
+
+    <select id="getByP" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select * from cl_w_contacts
+    <trim prefix="where" prefixOverrides="and|or"> 
+    <if test="phone != null">phone = #{phone}</if>
+    <if test="isAvailability != null">AND is_availability = '1' </if>
+    <if test="mobile != null">AND tips_phone = #{mobile} </if>
+    </trim> 
+    order by id DESC limit 1
+  </select>
+</mapper>

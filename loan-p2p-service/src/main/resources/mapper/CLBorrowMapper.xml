@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hwc.framework.modules.dao.CLBorrowMapper" >
+  <resultMap id="BaseResultMap" type="com.hwc.framework.modules.model.CLBorrow" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+    <result column="borrow_type" property="borrowType" jdbcType="VARCHAR" />
+    <result column="mid" property="mid" jdbcType="BIGINT" />
+    <result column="amount" property="amount" jdbcType="DECIMAL" />
+    <result column="real_amount" property="realAmount" jdbcType="DECIMAL" />
+    <result column="fee" property="fee" jdbcType="DECIMAL" />
+    <result column="periods" property="periods" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="time_limit" property="timeLimit" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="VARCHAR" />
+    <result column="expire_time" property="expireTime" jdbcType="TIMESTAMP" />
+    <result column="isnotify" property="isnotify" jdbcType="CHAR" />
+    <result column="card_id" property="cardId" jdbcType="BIGINT" />
+    <result column="service_fee" property="serviceFee" jdbcType="DECIMAL" />
+    <result column="flow_fee" property="flowFee" jdbcType="DECIMAL" />
+    <result column="info_auth_fee" property="infoAuthFee" jdbcType="DECIMAL" />
+    <result column="scenes" property="scenes" jdbcType="VARCHAR" />
+    <result column="interest" property="interest" jdbcType="DECIMAL" />
+    <result column="rate" property="rate" jdbcType="DECIMAL" />
+    <result column="client" property="client" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="coordinate" property="coordinate" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="loan_time" property="loanTime" jdbcType="TIMESTAMP" />
+    <result column="ip" property="ip" jdbcType="VARCHAR" />
+    <result column="cross_token" property="crossToken" jdbcType="VARCHAR" />
+    <result column="overdue_time" property="overdueTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, name, mobile, order_no, borrow_type, mid, amount, real_amount, fee, 
+    periods, create_time, time_limit, state, expire_time, isnotify, card_id, service_fee, 
+    flow_fee, info_auth_fee, scenes, interest, rate, client, address, coordinate, remark, 
+    loan_time, ip, overdue_time
+  </sql>
+  <select id="findBorrowByOrderNo" resultMap="BaseResultMap" parameterType="String" >
+    select
+    <include refid="Base_Column_List" />
+    from cl_borrow
+    where order_no = #{orderNo}
+    limit 1
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from cl_borrow
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from cl_borrow
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.hwc.framework.modules.model.CLBorrow" >
+    insert into cl_borrow (id, user_id, name, 
+      mobile, order_no, borrow_type, 
+      mid, amount, real_amount, 
+      fee, periods, create_time, 
+      time_limit, state, expire_time, 
+      isnotify, card_id, service_fee, 
+      flow_fee, info_auth_fee, scenes, 
+      interest, rate, client, 
+      address, coordinate, remark, 
+      loan_time, ip)
+    values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, 
+      #{mobile,jdbcType=VARCHAR}, #{orderNo,jdbcType=VARCHAR}, #{borrowType,jdbcType=VARCHAR}, 
+      #{mid,jdbcType=BIGINT}, #{amount,jdbcType=DECIMAL}, #{realAmount,jdbcType=DECIMAL}, 
+      #{fee,jdbcType=DECIMAL}, #{periods,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{timeLimit,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, #{expireTime,jdbcType=TIMESTAMP}, 
+      #{isnotify,jdbcType=CHAR}, #{cardId,jdbcType=BIGINT}, #{serviceFee,jdbcType=DECIMAL}, 
+      #{flowFee,jdbcType=DECIMAL}, #{infoAuthFee,jdbcType=DECIMAL}, #{scenes,jdbcType=VARCHAR}, 
+      #{interest,jdbcType=DECIMAL}, #{rate,jdbcType=DECIMAL}, #{client,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{coordinate,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{loanTime,jdbcType=TIMESTAMP}, #{ip,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hwc.framework.modules.model.CLBorrow" >
+    insert into cl_borrow
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="orderNo != null" >
+        order_no,
+      </if>
+      <if test="borrowType != null" >
+        borrow_type,
+      </if>
+      <if test="mid != null" >
+        mid,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="realAmount != null" >
+        real_amount,
+      </if>
+      <if test="fee != null" >
+        fee,
+      </if>
+      <if test="periods != null" >
+        periods,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="timeLimit != null" >
+        time_limit,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="expireTime != null" >
+        expire_time,
+      </if>
+      <if test="isnotify != null" >
+        isnotify,
+      </if>
+      <if test="cardId != null" >
+        card_id,
+      </if>
+      <if test="serviceFee != null" >
+        service_fee,
+      </if>
+      <if test="flowFee != null" >
+        flow_fee,
+      </if>
+      <if test="infoAuthFee != null" >
+        info_auth_fee,
+      </if>
+      <if test="scenes != null" >
+        scenes,
+      </if>
+      <if test="interest != null" >
+        interest,
+      </if>
+      <if test="rate != null" >
+        rate,
+      </if>
+      <if test="client != null" >
+        client,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="coordinate != null" >
+        coordinate,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="loanTime != null" >
+        loan_time,
+      </if>
+      <if test="ip != null" >
+        ip,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null" >
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="borrowType != null" >
+        #{borrowType,jdbcType=VARCHAR},
+      </if>
+      <if test="mid != null" >
+        #{mid,jdbcType=BIGINT},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="realAmount != null" >
+        #{realAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="fee != null" >
+        #{fee,jdbcType=DECIMAL},
+      </if>
+      <if test="periods != null" >
+        #{periods,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="timeLimit != null" >
+        #{timeLimit,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="expireTime != null" >
+        #{expireTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isnotify != null" >
+        #{isnotify,jdbcType=CHAR},
+      </if>
+      <if test="cardId != null" >
+        #{cardId,jdbcType=BIGINT},
+      </if>
+      <if test="serviceFee != null" >
+        #{serviceFee,jdbcType=DECIMAL},
+      </if>
+      <if test="flowFee != null" >
+        #{flowFee,jdbcType=DECIMAL},
+      </if>
+      <if test="infoAuthFee != null" >
+        #{infoAuthFee,jdbcType=DECIMAL},
+      </if>
+      <if test="scenes != null" >
+        #{scenes,jdbcType=VARCHAR},
+      </if>
+      <if test="interest != null" >
+        #{interest,jdbcType=DECIMAL},
+      </if>
+      <if test="rate != null" >
+        #{rate,jdbcType=DECIMAL},
+      </if>
+      <if test="client != null" >
+        #{client,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="coordinate != null" >
+        #{coordinate,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="loanTime != null" >
+        #{loanTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ip != null" >
+        #{ip,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateBorrowToRepaySuccess" parameterType="java.lang.Long" >
+    update cl_borrow
+    SET state = '40'
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hwc.framework.modules.model.CLBorrow" >
+    update cl_borrow
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null" >
+        order_no = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="borrowType != null" >
+        borrow_type = #{borrowType,jdbcType=VARCHAR},
+      </if>
+      <if test="mid != null" >
+        mid = #{mid,jdbcType=BIGINT},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="realAmount != null" >
+        real_amount = #{realAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="fee != null" >
+        fee = #{fee,jdbcType=DECIMAL},
+      </if>
+      <if test="periods != null" >
+        periods = #{periods,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="timeLimit != null" >
+        time_limit = #{timeLimit,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="expireTime != null" >
+        expire_time = #{expireTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isnotify != null" >
+        isnotify = #{isnotify,jdbcType=CHAR},
+      </if>
+      <if test="cardId != null" >
+        card_id = #{cardId,jdbcType=BIGINT},
+      </if>
+      <if test="serviceFee != null" >
+        service_fee = #{serviceFee,jdbcType=DECIMAL},
+      </if>
+      <if test="flowFee != null" >
+        flow_fee = #{flowFee,jdbcType=DECIMAL},
+      </if>
+      <if test="infoAuthFee != null" >
+        info_auth_fee = #{infoAuthFee,jdbcType=DECIMAL},
+      </if>
+      <if test="scenes != null" >
+        scenes = #{scenes,jdbcType=VARCHAR},
+      </if>
+      <if test="interest != null" >
+        interest = #{interest,jdbcType=DECIMAL},
+      </if>
+      <if test="rate != null" >
+        rate = #{rate,jdbcType=DECIMAL},
+      </if>
+      <if test="client != null" >
+        client = #{client,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="coordinate != null" >
+        coordinate = #{coordinate,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="loanTime != null" >
+        loan_time = #{loanTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="crossToken != null" >
+        cross_token = #{crossToken,jdbcType=VARCHAR},
+      </if>
+      <if test="overdueTime != null" >
+        overdue_time = #{overdueTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ip != null" >
+        ip = #{ip,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateBorrowForNotify" parameterType="com.hwc.framework.modules.model.CLBorrow" >
+    UPDATE cl_borrow
+    SET state = #{state},
+        isnotify=#{isnotify},
+        loan_time=#{loanTime}
+    where order_no=#{orderNo}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hwc.framework.modules.model.CLBorrow" >
+    update cl_borrow
+    set user_id = #{userId,jdbcType=BIGINT},
+      name = #{name,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      order_no = #{orderNo,jdbcType=VARCHAR},
+      borrow_type = #{borrowType,jdbcType=VARCHAR},
+      mid = #{mid,jdbcType=BIGINT},
+      amount = #{amount,jdbcType=DECIMAL},
+      real_amount = #{realAmount,jdbcType=DECIMAL},
+      fee = #{fee,jdbcType=DECIMAL},
+      periods = #{periods,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      time_limit = #{timeLimit,jdbcType=VARCHAR},
+      state = #{state,jdbcType=VARCHAR},
+      expire_time = #{expireTime,jdbcType=TIMESTAMP},
+      isnotify = #{isnotify,jdbcType=CHAR},
+      card_id = #{cardId,jdbcType=BIGINT},
+      service_fee = #{serviceFee,jdbcType=DECIMAL},
+      flow_fee = #{flowFee,jdbcType=DECIMAL},
+      info_auth_fee = #{infoAuthFee,jdbcType=DECIMAL},
+      scenes = #{scenes,jdbcType=VARCHAR},
+      interest = #{interest,jdbcType=DECIMAL},
+      rate = #{rate,jdbcType=DECIMAL},
+      client = #{client,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      coordinate = #{coordinate,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      loan_time = #{loanTime,jdbcType=TIMESTAMP},
+      ip = #{ip,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

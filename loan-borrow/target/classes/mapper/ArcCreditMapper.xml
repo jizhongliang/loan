@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwc.framework.modules.dao.ArcCreditMapper">
+  <resultMap id="BaseResultMap" type="com.hwc.framework.modules.model.ArcCredit">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="total" jdbcType="DECIMAL" property="total" />
+    <result column="credit_type" jdbcType="BIGINT" property="creditType" />
+    <result column="grade" jdbcType="VARCHAR" property="grade" />
+    <result column="used" jdbcType="DECIMAL" property="used" />
+    <result column="unuse" jdbcType="DECIMAL" property="unuse" />
+    <result column="state" jdbcType="VARCHAR" property="state" />
+    <result column="req_ext" jdbcType="VARCHAR" property="reqExt" />
+  </resultMap>
+
+  <update id="updateAmount" parameterType="java.util.HashMap">
+    update arc_credit set
+    used = used + #{used,jdbcType=DECIMAL},
+    unuse = unuse + #{unuse,jdbcType=DECIMAL}
+    where id = #{id ,jdbcType=INTEGER} and used + #{used,jdbcType=DECIMAL} &gt;= 0 and unuse + #{unuse,jdbcType=DECIMAL} &gt;= 0
+  </update>
+   <update id="updates" parameterType="java.util.HashMap">
+    update arc_credit set
+    used =#{used,jdbcType=DECIMAL},
+    unuse =#{unuse,jdbcType=DECIMAL}
+    where id = #{id ,jdbcType=INTEGER} 
+  </update>
+  <select id="getCreditById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select  id,user_id,total,credit_type,grade,used,unuse,state from
+      arc_credit WHERE user_id=#{user_id,jdbcType=BIGINT}
+  </select>
+</mapper>

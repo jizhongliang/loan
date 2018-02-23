@@ -1,0 +1,452 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hwc.framework.modules.dao.CLWContactsMapper" >
+  <resultMap id="BaseResultMap" type="com.hwc.framework.modules.model.CLWContacts" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="id_no" property="idNo" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="src" property="src" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="VARCHAR" />
+    <result column="is_credit" property="isCredit" jdbcType="VARCHAR" />
+    <result column="is_dy" property="isDy" jdbcType="VARCHAR" />
+    <result column="is_borrow" property="isBorrow" jdbcType="VARCHAR" />
+    <result column="person_income" property="personIncome" jdbcType="DECIMAL" />
+    <result column="education" property="education" jdbcType="VARCHAR" />
+    <result column="live_addr" property="liveAddr" jdbcType="VARCHAR" />
+    <result column="live_community" property="liveCommunity" jdbcType="VARCHAR" />
+    <result column="dy_value" property="dyValue" jdbcType="DECIMAL" />
+    <result column="dy_value_discount" property="dyValueDiscount" jdbcType="DECIMAL" />
+    <result column="dy_term" property="dyTerm" jdbcType="INTEGER" />
+    <result column="dy_city" property="dyCity" jdbcType="VARCHAR" />
+    <result column="company_name" property="companyName" jdbcType="VARCHAR" />
+    <result column="company_type" property="companyType" jdbcType="VARCHAR" />
+    <result column="company_addr" property="companyAddr" jdbcType="VARCHAR" />
+    <result column="borrow_rate" property="borrowRate" jdbcType="DECIMAL" />
+    <result column="quota_expire" property="quotaExpire" jdbcType="INTEGER" />
+    <result column="borrow_quota" property="borrowQuota" jdbcType="DECIMAL" />
+    <result column="updated" property="updated" jdbcType="TIMESTAMP" />
+    <result column="created" property="created" jdbcType="TIMESTAMP" />
+    <result column="credit_lines" property="creditLines" jdbcType="DECIMAL" />
+    <result column="vocation" property="vocation" jdbcType="VARCHAR" />
+    <result column="tips_phone" property="tipsPhone" jdbcType="VARCHAR" />
+    <result column="risk_level" property="riskLevel" jdbcType="INTEGER" />
+    <result column="old_repay_rate" property="oldRepayRate" jdbcType="DECIMAL" />
+    <result column="unuse_borrow_balance" property="unuseBorrowBalance" jdbcType="DECIMAL" />
+    <result column="month_repay_balance" property="monthRepayBalance" jdbcType="DECIMAL" />
+    <result column="original_limit" property="originalLimit" jdbcType="DECIMAL" />
+    <result column="surplus_limit" property="surplusLimit" jdbcType="DECIMAL" />
+    <result column="city_code" property="cityCode" jdbcType="VARCHAR" />
+    <result column="is_availability" property="isAvailability" jdbcType="VARCHAR" />
+    <result column="borrowId" property="borrowId" jdbcType="VARCHAR" />
+    <result column="declaration_company" property="declarationCompany" jdbcType="VARCHAR" />
+    <result column="declaration_people" property="declarationPeople" jdbcType="VARCHAR" />
+    <result column="mortgage_testify" property="mortgageTestify" jdbcType="VARCHAR" />
+    <result column="parking_position" property="parkingPosition" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, phone, id_no, name, src, state, is_credit, is_dy, is_borrow, person_income, education, 
+    live_addr, live_community, dy_value, dy_value_discount, dy_term, dy_city, company_name, 
+    company_type, company_addr, borrow_rate, quota_expire, borrow_quota, updated, created, 
+    credit_lines, vocation, tips_phone, risk_level, old_repay_rate, unuse_borrow_balance, 
+    month_repay_balance,city_code,is_availability, borrowId, declaration_company, declaration_people,
+    mortgage_testify, parking_position
+  </sql>
+  <select id="getContactsByTipsPhone" resultMap="BaseResultMap" parameterType="String" >
+    select
+    <include refid="Base_Column_List" />
+    from cl_w_contacts
+    where tips_phone = #{phone}
+    <if test="phone != null">AND is_dy = 'T' </if>
+    <if test="phone != null">AND is_availability = '1' limit 1 </if>
+  </select>
+  <select id="getContactsByPhone" resultMap="BaseResultMap" parameterType="String" >
+    select
+    <include refid="Base_Column_List" />
+    from cl_w_contacts
+    where phone = #{phone}
+    <if test="phone != null">AND is_dy = 'T' AND is_availability = '1' limit 1 </if>
+  </select>
+  <select id="getCreditContactsByTipsPhone" resultMap="BaseResultMap" parameterType="String" >
+    select
+    <include refid="Base_Column_List" />
+    from cl_w_contacts
+    where tips_phone = #{phone}
+    <if test="phone != null">AND is_credit = 'T' </if>
+    <if test="phone != null">AND is_availability = '1' limit 1 </if>
+  </select>
+  <select id="getCreditContactsByPhone" resultMap="BaseResultMap" parameterType="String" >
+    select
+    <include refid="Base_Column_List" />
+    from cl_w_contacts
+    where phone = #{phone}
+    <if test="phone != null">AND is_credit = 'T' AND is_availability = '1' limit 1 </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from cl_w_contacts
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from cl_w_contacts
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.hwc.framework.modules.model.CLWContacts" >
+    insert into cl_w_contacts (id, phone, id_no, 
+      name, src, state, is_credit, 
+      is_dy, is_borrow, person_income, 
+      education, live_addr, live_community, 
+      dy_value, dy_value_discount, dy_term, 
+      dy_city, company_name, company_type, 
+      company_addr, borrow_rate, quota_expire, 
+      borrow_quota, updated, created, 
+      credit_lines, vocation, tips_phone, 
+      risk_level, old_repay_rate, unuse_borrow_balance, 
+      month_repay_balance)
+    values (#{id,jdbcType=BIGINT}, #{phone,jdbcType=VARCHAR}, #{idNo,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{src,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, #{isCredit,jdbcType=VARCHAR}, 
+      #{isDy,jdbcType=VARCHAR}, #{isBorrow,jdbcType=VARCHAR}, #{personIncome,jdbcType=DECIMAL}, 
+      #{education,jdbcType=VARCHAR}, #{liveAddr,jdbcType=VARCHAR}, #{liveCommunity,jdbcType=VARCHAR}, 
+      #{dyValue,jdbcType=DECIMAL}, #{dyValueDiscount,jdbcType=DECIMAL}, #{dyTerm,jdbcType=INTEGER}, 
+      #{dyCity,jdbcType=VARCHAR}, #{companyName,jdbcType=VARCHAR}, #{companyType,jdbcType=VARCHAR}, 
+      #{companyAddr,jdbcType=VARCHAR}, #{borrowRate,jdbcType=DECIMAL}, #{quotaExpire,jdbcType=INTEGER}, 
+      #{borrowQuota,jdbcType=DECIMAL}, #{updated,jdbcType=TIMESTAMP}, #{created,jdbcType=TIMESTAMP}, 
+      #{creditLines,jdbcType=DECIMAL}, #{vocation,jdbcType=VARCHAR}, #{tipsPhone,jdbcType=VARCHAR}, 
+      #{riskLevel,jdbcType=INTEGER}, #{oldRepayRate,jdbcType=DECIMAL}, #{unuseBorrowBalance,jdbcType=DECIMAL}, 
+      #{monthRepayBalance,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hwc.framework.modules.model.CLWContacts" >
+    insert into cl_w_contacts
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="idNo != null" >
+        id_no,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="src != null" >
+        src,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="isCredit != null" >
+        is_credit,
+      </if>
+      <if test="isDy != null" >
+        is_dy,
+      </if>
+      <if test="isBorrow != null" >
+        is_borrow,
+      </if>
+      <if test="personIncome != null" >
+        person_income,
+      </if>
+      <if test="education != null" >
+        education,
+      </if>
+      <if test="liveAddr != null" >
+        live_addr,
+      </if>
+      <if test="liveCommunity != null" >
+        live_community,
+      </if>
+      <if test="dyValue != null" >
+        dy_value,
+      </if>
+      <if test="dyValueDiscount != null" >
+        dy_value_discount,
+      </if>
+      <if test="dyTerm != null" >
+        dy_term,
+      </if>
+      <if test="dyCity != null" >
+        dy_city,
+      </if>
+      <if test="companyName != null" >
+        company_name,
+      </if>
+      <if test="companyType != null" >
+        company_type,
+      </if>
+      <if test="companyAddr != null" >
+        company_addr,
+      </if>
+      <if test="borrowRate != null" >
+        borrow_rate,
+      </if>
+      <if test="quotaExpire != null" >
+        quota_expire,
+      </if>
+      <if test="borrowQuota != null" >
+        borrow_quota,
+      </if>
+      <if test="updated != null" >
+        updated,
+      </if>
+      <if test="created != null" >
+        created,
+      </if>
+      <if test="creditLines != null" >
+        credit_lines,
+      </if>
+      <if test="vocation != null" >
+        vocation,
+      </if>
+      <if test="tipsPhone != null" >
+        tips_phone,
+      </if>
+      <if test="riskLevel != null" >
+        risk_level,
+      </if>
+      <if test="oldRepayRate != null" >
+        old_repay_rate,
+      </if>
+      <if test="unuseBorrowBalance != null" >
+        unuse_borrow_balance,
+      </if>
+      <if test="monthRepayBalance != null" >
+        month_repay_balance,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="idNo != null" >
+        #{idNo,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="src != null" >
+        #{src,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="isCredit != null" >
+        #{isCredit,jdbcType=VARCHAR},
+      </if>
+      <if test="isDy != null" >
+        #{isDy,jdbcType=VARCHAR},
+      </if>
+      <if test="isBorrow != null" >
+        #{isBorrow,jdbcType=VARCHAR},
+      </if>
+      <if test="personIncome != null" >
+        #{personIncome,jdbcType=DECIMAL},
+      </if>
+      <if test="education != null" >
+        #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="liveAddr != null" >
+        #{liveAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="liveCommunity != null" >
+        #{liveCommunity,jdbcType=VARCHAR},
+      </if>
+      <if test="dyValue != null" >
+        #{dyValue,jdbcType=DECIMAL},
+      </if>
+      <if test="dyValueDiscount != null" >
+        #{dyValueDiscount,jdbcType=DECIMAL},
+      </if>
+      <if test="dyTerm != null" >
+        #{dyTerm,jdbcType=INTEGER},
+      </if>
+      <if test="dyCity != null" >
+        #{dyCity,jdbcType=VARCHAR},
+      </if>
+      <if test="companyName != null" >
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyType != null" >
+        #{companyType,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAddr != null" >
+        #{companyAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="borrowRate != null" >
+        #{borrowRate,jdbcType=DECIMAL},
+      </if>
+      <if test="quotaExpire != null" >
+        #{quotaExpire,jdbcType=INTEGER},
+      </if>
+      <if test="borrowQuota != null" >
+        #{borrowQuota,jdbcType=DECIMAL},
+      </if>
+      <if test="updated != null" >
+        #{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="created != null" >
+        #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creditLines != null" >
+        #{creditLines,jdbcType=DECIMAL},
+      </if>
+      <if test="vocation != null" >
+        #{vocation,jdbcType=VARCHAR},
+      </if>
+      <if test="tipsPhone != null" >
+        #{tipsPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="riskLevel != null" >
+        #{riskLevel,jdbcType=INTEGER},
+      </if>
+      <if test="oldRepayRate != null" >
+        #{oldRepayRate,jdbcType=DECIMAL},
+      </if>
+      <if test="unuseBorrowBalance != null" >
+        #{unuseBorrowBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="monthRepayBalance != null" >
+        #{monthRepayBalance,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hwc.framework.modules.model.CLWContacts" >
+    update cl_w_contacts
+    <set >
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="idNo != null" >
+        id_no = #{idNo,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="src != null" >
+        src = #{src,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="isCredit != null" >
+        is_credit = #{isCredit,jdbcType=VARCHAR},
+      </if>
+      <if test="isDy != null" >
+        is_dy = #{isDy,jdbcType=VARCHAR},
+      </if>
+      <if test="isBorrow != null" >
+        is_borrow = #{isBorrow,jdbcType=VARCHAR},
+      </if>
+      <if test="personIncome != null" >
+        person_income = #{personIncome,jdbcType=DECIMAL},
+      </if>
+      <if test="education != null" >
+        education = #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="liveAddr != null" >
+        live_addr = #{liveAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="liveCommunity != null" >
+        live_community = #{liveCommunity,jdbcType=VARCHAR},
+      </if>
+      <if test="dyValue != null" >
+        dy_value = #{dyValue,jdbcType=DECIMAL},
+      </if>
+      <if test="dyValueDiscount != null" >
+        dy_value_discount = #{dyValueDiscount,jdbcType=DECIMAL},
+      </if>
+      <if test="dyTerm != null" >
+        dy_term = #{dyTerm,jdbcType=INTEGER},
+      </if>
+      <if test="dyCity != null" >
+        dy_city = #{dyCity,jdbcType=VARCHAR},
+      </if>
+      <if test="companyName != null" >
+        company_name = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyType != null" >
+        company_type = #{companyType,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAddr != null" >
+        company_addr = #{companyAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="borrowRate != null" >
+        borrow_rate = #{borrowRate,jdbcType=DECIMAL},
+      </if>
+      <if test="quotaExpire != null" >
+        quota_expire = #{quotaExpire,jdbcType=INTEGER},
+      </if>
+      <if test="borrowQuota != null" >
+        borrow_quota = #{borrowQuota,jdbcType=DECIMAL},
+      </if>
+      <if test="updated != null" >
+        updated = #{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="created != null" >
+        created = #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creditLines != null" >
+        credit_lines = #{creditLines,jdbcType=DECIMAL},
+      </if>
+      <if test="vocation != null" >
+        vocation = #{vocation,jdbcType=VARCHAR},
+      </if>
+      <if test="tipsPhone != null" >
+        tips_phone = #{tipsPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="riskLevel != null" >
+        risk_level = #{riskLevel,jdbcType=INTEGER},
+      </if>
+      <if test="oldRepayRate != null" >
+        old_repay_rate = #{oldRepayRate,jdbcType=DECIMAL},
+      </if>
+      <if test="unuseBorrowBalance != null" >
+        unuse_borrow_balance = #{unuseBorrowBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="monthRepayBalance != null" >
+        month_repay_balance = #{monthRepayBalance,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hwc.framework.modules.model.CLWContacts" >
+    update cl_w_contacts
+    set phone = #{phone,jdbcType=VARCHAR},
+      id_no = #{idNo,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      src = #{src,jdbcType=VARCHAR},
+      state = #{state,jdbcType=VARCHAR},
+      is_credit = #{isCredit,jdbcType=VARCHAR},
+      is_dy = #{isDy,jdbcType=VARCHAR},
+      is_borrow = #{isBorrow,jdbcType=VARCHAR},
+      person_income = #{personIncome,jdbcType=DECIMAL},
+      education = #{education,jdbcType=VARCHAR},
+      live_addr = #{liveAddr,jdbcType=VARCHAR},
+      live_community = #{liveCommunity,jdbcType=VARCHAR},
+      dy_value = #{dyValue,jdbcType=DECIMAL},
+      dy_value_discount = #{dyValueDiscount,jdbcType=DECIMAL},
+      dy_term = #{dyTerm,jdbcType=INTEGER},
+      dy_city = #{dyCity,jdbcType=VARCHAR},
+      company_name = #{companyName,jdbcType=VARCHAR},
+      company_type = #{companyType,jdbcType=VARCHAR},
+      company_addr = #{companyAddr,jdbcType=VARCHAR},
+      borrow_rate = #{borrowRate,jdbcType=DECIMAL},
+      quota_expire = #{quotaExpire,jdbcType=INTEGER},
+      borrow_quota = #{borrowQuota,jdbcType=DECIMAL},
+      updated = #{updated,jdbcType=TIMESTAMP},
+      created = #{created,jdbcType=TIMESTAMP},
+      credit_lines = #{creditLines,jdbcType=DECIMAL},
+      vocation = #{vocation,jdbcType=VARCHAR},
+      tips_phone = #{tipsPhone,jdbcType=VARCHAR},
+      risk_level = #{riskLevel,jdbcType=INTEGER},
+      old_repay_rate = #{oldRepayRate,jdbcType=DECIMAL},
+      unuse_borrow_balance = #{unuseBorrowBalance,jdbcType=DECIMAL},
+      month_repay_balance = #{monthRepayBalance,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
